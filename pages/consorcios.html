@@ -11,9 +11,9 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="consorcio in consorcios._embedded.consorcios" class='clickableRow'>
-					<td>{{consorcio.idConsorcio}}</td>
+					<td>{{consorcio.id}}</td>
 					<td>{{consorcio.nombre}}</td>
-					<td><a href="{{consorcio._links.self.href}}">Link</a></td>
+					<td><a href="/consorcios/{{consorcio.id}}/">Link</a></td>
 				</tr>
 			</tbody>
 		</table>
