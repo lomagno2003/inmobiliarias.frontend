@@ -9,16 +9,18 @@ myApp.config(function($routeProvider) {
 		templateUrl : 'pages/home.html',
 		controller : 'mainController'
 	})
-
-	// route for the about page
-	.when('/consorcios', {
-		templateUrl : 'pages/consorcios.html',
-		controller : 'consorciosController'
+	
+		// route for the about page
+	.when('/:repository/:id/', {
+		templateUrl : 'pages/abm/abstract_abm_detail.html',
+		controller : 'DynamicABMController'
 	})
 
-	// route for the contact page
-	.when('/propiedades', {
-		templateUrl : 'pages/propiedades.html',
-		controller : 'contactController'
+	// route for the about page
+	.when('/:repository', {
+		templateUrl : 'pages/abm/abstract_abm.html',
+		controller : 'DynamicRepositoryController'
 	});
+	
+
 });

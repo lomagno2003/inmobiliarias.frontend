@@ -1,0 +1,19 @@
+<div class="row clearfix">
+	<div class="col-md-12 column">
+		<h3>{{title}}</h3>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Nombre</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="element in elements" class='clickableRow'>
+					<td>{{element.id}}</td>
+					<td>{{element.nombre}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
