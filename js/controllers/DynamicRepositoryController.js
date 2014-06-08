@@ -9,6 +9,6 @@ myApp.controller('DynamicRepositoryController', [ '$scope', '$routeParams',
 				
 		repositoryService.loadRepository(function(value) {
 			$scope.elements = value;
-		});
+		});		
 	} 
 ]);

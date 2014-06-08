@@ -2,17 +2,17 @@ var myApp = angular.module('myApp');
  
 myApp.service('RepositoryService', function(
 		$resource, $routeParams, ConsorciosService, PropiedadesService, PropietariosService) {	
-    this.getRepository = function(){
+    this.getRepository = function(repository){
     	var repositoryService;
     	
-    	switch($routeParams.repository){
-		case 'consorcios':
+    	switch(repository){
+		case 'consorcio':
 			repositoryService = ConsorciosService;
 			break;
-		case 'propiedades':
+		case 'propiedad':
 			repositoryService = PropiedadesService;
 			break;
-		case 'propietarios':
+		case 'propietario':
 			repositoryService = PropietariosService;
 			break;
 		}
