@@ -19,7 +19,10 @@ myApp.controller('DynamicABMController', [ '$scope', '$rootScope', '$routeParams
 						repositoryService.viewStructure[field]['fieldId']
 					);
 					
-					subRepositoryService.loadRepository(function(value) {
+					console.log(value);
+					link = value._links[repositoryService.viewStructure[field]['fieldId']].href;
+					console.log(link);
+					subRepositoryService.loadElementsFromLink(link,function(value) {
 						columns = [];
 						
 						

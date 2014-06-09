@@ -5,10 +5,10 @@ myApp.controller('DynamicRepositoryController', [ '$scope', '$routeParams',
 	function($scope, $routeParams, RepositoryService) {
 		$scope.repository = $routeParams.repository;
 		
-		repositoryService = RepositoryService.getRepository();
-				
-		repositoryService.loadRepository(function(value) {
+		repositoryService = RepositoryService.getRepository($routeParams.repository);
+
+		repositoryService.loadElements(function(value) {
 			$scope.elements = value;
-		});		
+		});
 	} 
 ]);

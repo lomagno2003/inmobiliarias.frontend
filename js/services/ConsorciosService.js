@@ -20,12 +20,16 @@ myApp.service('ConsorciosService', function($resource) {
 		}
 	];
 	
-    this.loadRepository = function(fnc){
-		consorciosAPI = $resource("http://localhost:port/consorcio", {port:':8082'});
+	this.loadElements = function(fnc){
+		this.loadElementsFromLink("http://localhost:8082/consorcio",fnc);
+	};
+	
+    this.loadElementsFromLink = function(link,fnc){
+		consorciosAPI = $resource(link);
 		
 		var returnValue = consorciosAPI.get(function(){
 			if(returnValue.hasOwnProperty('_embedded')){
-				fnc(returnValue._embedded.consorcios);
+				fnc(returnValue._embedded.consorcio);
 			} else {
 				fnc({});
 			}
