@@ -3,28 +3,34 @@ var myApp = angular.module('myApp');
 myApp.controller('DynamicABMController', [ '$scope', '$rootScope', '$routeParams',
 	'RepositoryService',
 	function($scope, $rootScope, $routeParams, RepositoryService) {
+		$scope.fields = [];
+	
 		$scope.title = $rootScope.globalVariables[$routeParams.repository.concat(".abm.title")];
 		
 		repositoryService = RepositoryService.getRepository($routeParams.repository);
 		
-		$scope.fields = [];
+		$scope.resource = RepositoryService.getResource($routeParams.repository,$routeParams.id);
 		
-		repositoryService.loadElement($routeParams.id,function(value) {
-			$scope.element = value;
+		$scope.resource = $scope.resource.get(function(){
+			$scope.resource = $scope.resource;
+
+			$scope.element = $scope.resource;
 			
 			for(var field in repositoryService.viewStructure){
-				
 				if(repositoryService.viewStructure[field]['fieldType']=='table'){
 					subRepositoryService = RepositoryService.getRepository(
 						repositoryService.viewStructure[field]['fieldId']
 					);
 					
-					console.log(value);
-					link = value._links[repositoryService.viewStructure[field]['fieldId']].href;
-					console.log(link);
-					subRepositoryService.loadElementsFromLink(link,function(value) {
+					link = $scope.resource._links[repositoryService.viewStructure[field]['fieldId']].href;
+					
+					
+					
+					subResource = RepositoryService.getResourceFromLink(link);
+					
+					subResource.get(function(resultValue) {
+						resultValue = resultValue._embedded[repositoryService.viewStructure[field]['fieldId']];
 						columns = [];
-						
 						
 						for(var column in repositoryService.viewStructure[field]['columns']){
 							console.log(column);
@@ -37,14 +43,14 @@ myApp.controller('DynamicABMController', [ '$scope', '$rootScope', '$routeParams
 						
 						rows = [];
 						
-						for(var row in value){
+						for(var row in resultValue){
 							console.log(row);
 							rowAux = [];
 							
 							for(var column in repositoryService.viewStructure[field]['columns']){
 								columnAux={};
 								
-								columnAux['columnValue']=value[row][repositoryService.viewStructure[field]['columns'][column]['columnId']];
+								columnAux['columnValue']=resultValue[row][repositoryService.viewStructure[field]['columns'][column]['columnId']];
 								
 								rowAux.push(columnAux);
 							};

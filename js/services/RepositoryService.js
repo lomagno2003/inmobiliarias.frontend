@@ -1,7 +1,8 @@
 var myApp = angular.module('myApp');
  
-myApp.service('RepositoryService', function(
-		$resource, $routeParams, ConsorciosService, PropiedadesService, PropietariosService) {	
+myApp.service('RepositoryService',['$resource', '$routeParams', 'ConsorciosService', 'PropiedadesService', 'PropietariosService',
+                           function($resource, $routeParams, ConsorciosService, PropiedadesService, PropietariosService) {
+	
     this.getRepository = function(repository){
     	var repositoryService;
     	
@@ -21,4 +22,22 @@ myApp.service('RepositoryService', function(
     	
     	return repositoryService;
     };
-});
+    
+    this.getResource = function(repository,id){
+    	return $resource("http://localhost:port/:repository/:id",{"port":":8082","repository":repository,"id":id},
+    		{
+	            create: {method: "GET"},
+	            update: {method : "PUT"}
+	        }
+    	);
+    };
+    
+    this.getResourceFromLink = function(link){
+    	return $resource(link,{},
+    		{
+	            create: {method: "GET"},
+	            update: {method : "PUT"}
+	        }
+    	);
+    };
+}]);
