@@ -16,41 +16,40 @@ myApp.controller('DynamicABMController', [ '$scope', '$rootScope', '$routeParams
 
 			$scope.element = $scope.resource;
 			
-			for(var field in repositoryService.viewStructure){
-				if(repositoryService.viewStructure[field]['fieldType']=='table'){
+			fields = repositoryService.viewStructure.fields;
+			
+			for(var field in fields){
+				if(fields[field]['fieldType']=='table'){
 					subRepositoryService = RepositoryService.getRepository(
-						repositoryService.viewStructure[field]['fieldId']
+						fields[field]['fieldId']
 					);
 					
-					link = $scope.resource._links[repositoryService.viewStructure[field]['fieldId']].href;
+					link = $scope.resource._links[fields[field]['fieldId']].href;
 					
 					
 					
 					subResource = RepositoryService.getResourceFromLink(link);
 					
 					subResource.get(function(resultValue) {
-						resultValue = resultValue._embedded[repositoryService.viewStructure[field]['fieldId']];
+						resultValue = resultValue._embedded[fields[field]['fieldId']];
 						columns = [];
 						
-						for(var column in repositoryService.viewStructure[field]['columns']){
-							console.log(column);
-
+						for(var column in fields[field]['columns']){
 							columns.push({
-								'columnId':repositoryService.viewStructure[field]['columns'][column]['columnId'],
-								'columnName':repositoryService.viewStructure[field]['columns'][column]['columnName'],
+								'columnId':fields[field]['columns'][column]['columnId'],
+								'columnName':fields[field]['columns'][column]['columnName'],
 							});
 						};
 						
 						rows = [];
 						
 						for(var row in resultValue){
-							console.log(row);
 							rowAux = [];
 							
-							for(var column in repositoryService.viewStructure[field]['columns']){
+							for(var column in fields[field]['columns']){
 								columnAux={};
 								
-								columnAux['columnValue']=resultValue[row][repositoryService.viewStructure[field]['columns'][column]['columnId']];
+								columnAux['columnValue']=resultValue[row][fields[field]['columns'][column]['columnId']];
 								
 								rowAux.push(columnAux);
 							};
@@ -59,18 +58,18 @@ myApp.controller('DynamicABMController', [ '$scope', '$rootScope', '$routeParams
 						}
 						
 						$scope.fields.push({
-							'fieldId':repositoryService.viewStructure[field]['fieldId'],
-							'fieldName':repositoryService.viewStructure[field]['fieldName'],
-							'fieldType':repositoryService.viewStructure[field]['fieldType'],
+							'fieldId':fields[field]['fieldId'],
+							'fieldName':fields[field]['fieldName'],
+							'fieldType':fields[field]['fieldType'],
 							'columns':columns,
 							'rows':rows
 						});
 					});
 				} else {
 					$scope.fields.push({
-						'fieldId':repositoryService.viewStructure[field]['fieldId'],
-						'fieldName':repositoryService.viewStructure[field]['fieldName'],
-						'fieldType':repositoryService.viewStructure[field]['fieldType']
+						'fieldId':fields[field]['fieldId'],
+						'fieldName':fields[field]['fieldName'],
+						'fieldType':fields[field]['fieldType']
 					});
 				}
 			};
