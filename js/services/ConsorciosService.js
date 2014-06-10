@@ -2,6 +2,7 @@ var myApp = angular.module('myApp');
 
 myApp.service('ConsorciosService', function($resource) {
 	this.viewStructure = {
+		title : "Detalles del consorcio",
 		fields : [ {
 			'fieldId' : 'nombre',
 			'fieldName' : 'Nombre',

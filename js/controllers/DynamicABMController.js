@@ -4,15 +4,14 @@ myApp.controller('DynamicABMController', [ '$scope', '$rootScope', '$routeParams
 	'RepositoryService',
 	function($scope, $rootScope, $routeParams, RepositoryService) {
 		$scope.fields = [];
-	
-		$scope.title = $rootScope.globalVariables[$routeParams.repository.concat(".abm.title")];
-		
+
 		repositoryService = RepositoryService.getRepository($routeParams.repository);
 		
 		$scope.resource = RepositoryService.getResource($routeParams.repository,$routeParams.id);
 		
 		$scope.resource = $scope.resource.get(function(){
 			$scope.resource = $scope.resource;
+			$scope.title = repositoryService.viewStructure.title;
 
 			$scope.element = $scope.resource;
 			

@@ -2,6 +2,7 @@ var myApp = angular.module('myApp');
 
 myApp.service('PropietariosService', function($resource) {
 	this.viewStructure = {
+		title : "Detalles del propietario",
 		fields : [ {
 			'fieldId' : 'nombre',
 			'fieldName' : 'Nombre',
