@@ -4,14 +4,12 @@
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th>#</th>
-					<th>Nombre</th>
+					<th ng-repeat="column in columns">{{column.columnName}}</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="element in elements" class='clickableRow'>
-					<td>{{element.id}}</td>
-					<td>{{element.nombre}}</td>
+				<tr ng-repeat="row in rows" class='clickableRow'>
+					<td ng-repeat="column in row">{{column.columnValue}}</td>
 				</tr>
 			</tbody>
 		</table>

@@ -1,6 +1,14 @@
 var myApp = angular.module('myApp');
 
 myApp.service('PropiedadesService', function($resource) {
+	this.viewListStructure = {
+			title : "Detalles de la propiedad",
+			columns : [ {
+				'columnId' : 'nombre',
+				'columnName' : 'Nombre'
+			} ]	
+	};
+	
 	this.viewStructure = {
 		title : "Detalles de la propiedad",
 		fields : [ {
@@ -15,7 +23,38 @@ myApp.service('PropiedadesService', function($resource) {
 			'fieldId' : 'porcentajeGastosComunes',
 			'fieldName' : 'Porcentaje de gastos comunes',
 			'fieldType' : 'number'
-		} ]
+		}, {
+			'fieldId' : 'consorcio',
+			'fieldName' : 'Consorcio',
+			'fieldType' : 'reference',
+			'referenceField' :  
+			    {
+					'fieldId' : 'nombre',
+					'fieldName' : 'Nombre',
+					'fieldType' : 'text'	
+			    }
+		}, {
+			'fieldId' : 'propietario',
+			'fieldName' : 'Propietario',
+			'fieldType' : 'reference',
+			'referenceField' :  
+			    {
+					'fieldId' : 'nombre',
+					'fieldName' : 'Nombre',
+					'fieldType' : 'text'	
+			    }
+		}, {
+			'fieldId' : 'gasto',
+			'fieldName' : 'Gastos',
+			'fieldType' : 'table',
+			'columns' : [ {
+				'columnId' : 'monto',
+				'columnName' : 'Monto'
+			}, {
+				'columnId' : 'comentarios',
+				'columnName' : 'Comentarios'
+			} ]
+		}]
 	};
 
 });

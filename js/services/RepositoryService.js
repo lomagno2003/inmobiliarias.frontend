@@ -38,4 +38,13 @@ myApp.service('RepositoryService',['$resource', '$routeParams', 'ConsorciosServi
 	        }
     	);
     };
+    
+    this.getResourceFromLink2 = function(link,params){
+    	return $resource(link,params,
+    		{
+	            create: {method: "GET"},
+	            update: {method : "PUT"}
+	        }
+    	);
+    };
 }]);

@@ -29,6 +29,16 @@
 							</tbody>
 						</table>
 					</div>
+					
+					<div ng-switch-when='reference'>
+						<label for="{{field.fieldId}}" class="col-sm-2 control-label">{{field.fieldName}}</label>
+						<div class="col-sm-10">
+							<a href="{{field.referenceField.fieldHRef}}">
+								<button type="button" class="form-control"
+									id="{{field.fieldId}}" ng-model="field.referenceField.fieldValue">{{field.referenceField.fieldValue}}</button>
+							</a>
+						</div>
+					</div>
 				</div>
 			</div>
 
