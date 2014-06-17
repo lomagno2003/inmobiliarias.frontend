@@ -8,8 +8,8 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="row in rows">
-					<td ng-repeat="column in row.columns">{{column.columnValue}}<a href="{{row.href}}">Link</a></td>
+				<tr ng-repeat="row in rows" ng-click='goTo(row.href)'>
+					<td ng-repeat="column in row.columns">{{column.columnValue}}</td>
 				</tr>
 			</tbody>
 		</table>

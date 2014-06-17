@@ -1,8 +1,8 @@
 var myApp = angular.module('myApp');
 
-myApp.controller('DynamicABMController', [ '$scope', '$rootScope', '$routeParams',
+myApp.controller('DynamicABMController', [ '$scope', '$rootScope', '$routeParams', '$location',
 	'RepositoryService','Restangular',
-	function($scope, $rootScope, $routeParams, RepositoryService, Restangular) {	
+	function($scope, $rootScope, $routeParams, $location, RepositoryService, Restangular) {	
 		repositoryService = RepositoryService.getRepository($routeParams.repository);
 		
 		$scope.fields = repositoryService.viewStructure.fields;
@@ -42,6 +42,25 @@ myApp.controller('DynamicABMController', [ '$scope', '$rootScope', '$routeParams
 			}
 			
 			return result;
+		};
+		
+		
+		$scope.goBack = function(){
+			console.log($routeParams.repository);
+			$location.path($routeParams.repository);
+		};
+		
+		$scope.save = function(){
+			$scope.element.put().then(function(){
+				console.log("Element saved");
+			});
+		};
+		
+		$scope.remove = function(){
+			$scope.element.remove().then(function(){
+				console.log("Element deleted");
+				$scope.goBack();
+			});
 		};
 	}
 ]);

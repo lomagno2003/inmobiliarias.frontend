@@ -25,7 +25,7 @@ myApp.controller('DynamicRepositoryController', [ '$scope', '$routeParams', '$lo
 			console.log(row);
 			var newRow = {};
 			
-			newRow.href = "#/".concat($routeParams.repository).concat("/").concat(row.id);
+			newRow.href = $routeParams.repository.concat("/").concat(row.id);
 
 			newRow.columns = [];
 			
@@ -44,10 +44,21 @@ myApp.controller('DynamicRepositoryController', [ '$scope', '$routeParams', '$lo
 		$scope.create = function(){
 			console.log('clicked');
 			console.log(maxId);
-			raNewElement = Restangular.one($routeParams.repository,maxId+1).put('',{}).then(function(postedElement){
+			newElement = {};
+			
+			idKey = "id".concat($routeParams.repository.substring(0,1).toUpperCase()).concat($routeParams.repository.substring(1));
+			console.log(idKey);
+			newElement[idKey] = maxId+1;
+			
+			raNewElement = Restangular.all($routeParams.repository.concat('/')).post(newElement).then(function(postedElement){
 				path = $routeParams.repository.concat('/').concat(maxId+1);
 				$location.path(path);
 			});
+		};
+		
+		$scope.goTo = function(path){
+			console.log(path);
+			$location.path(path);
 		};
 	}
 ]);
