@@ -1,7 +1,19 @@
-var myApp = angular.module('myApp', ['ngResource','ngRoute']);
-
-myApp.run(function ($rootScope) {
-	$rootScope.globalVariables = [];
-	$rootScope.globalVariables["consorcios.repository.title"] = "";
-	$rootScope.globalVariables["consorcios.abm.title"] = "TITULO";
-});
+var myApp = angular.module('myApp', ['ngResource','ngRoute','restangular'])
+.config(function(RestangularProvider) {
+	  RestangularProvider.setBaseUrl(
+	    'http://localhost:8082/');
+	  
+	  RestangularProvider.setResponseInterceptor(function(response, operation, route, url) {
+		  var newResponse;
+	      if (operation === "getList") {
+	    	if(response.hasOwnProperty('_embedded')){
+		        newResponse = response._embedded[route];
+	    	} else {
+	    		newResponse = [];
+	    	}
+	      } else {
+	        newResponse = response;
+	      }
+	      return newResponse;
+	    });
+});;

@@ -1,33 +1,53 @@
 var myApp = angular.module('myApp');
 
-myApp.controller('DynamicRepositoryController', [ '$scope', '$routeParams',
-	'RepositoryService', 
-	function($scope, $routeParams, RepositoryService) {
+myApp.controller('DynamicRepositoryController', [ '$scope', '$routeParams', '$location',
+	'RepositoryService','Restangular', 
+	function($scope, $routeParams, $location, RepositoryService, Restangular) {
+	var maxId = 0;
+	
 	repositoryService = RepositoryService.getRepository($routeParams.repository);
 	
-	$scope.resource = RepositoryService.getResource($routeParams.repository,$routeParams.id);
-	
-	$scope.resource = $scope.resource.get(function(){
-		$scope.resource = $scope.resource;
+	raElements = Restangular.all($routeParams.repository);
+		
+	raElements.getList().then(function(elements){
+		console.log(elements);
+
 		$scope.title = repositoryService.viewListStructure.title;
 		$scope.columns = repositoryService.viewListStructure.columns;
 		$scope.rows = [];
 		
-		var rows = $scope.resource._embedded[$routeParams.repository]; 
+		var rows = elements;
 
-		for(var row in rows){
-			var newRow = [];
-			
-			for(var column in $scope.columns){
-				newRow.push({
-					'columnId':$scope.columns[column].columnId,
-					'columnName':$scope.columns[column].columnName,
-					'columnValue':rows[row][$scope.columns[column].columnId]
-				});
+		_.forEach(rows, function(row){
+			if(row.id>maxId){
+				maxId = row.id;
 			}
+			console.log(row);
+			var newRow = {};
+			
+			newRow.href = "#/".concat($routeParams.repository).concat("/").concat(row.id);
+
+			newRow.columns = [];
+			
+			_.forEach($scope.columns, function(column){
+				newRow.columns.push({
+					'columnId':column.columnId,
+					'columnName':column.columnName,
+					'columnValue':row[column.columnId]
+				});
+			});
 			$scope.rows.push(newRow);
-		}
+		});
 
 		});
+
+		$scope.create = function(){
+			console.log('clicked');
+			console.log(maxId);
+			raNewElement = Restangular.one($routeParams.repository,maxId+1).put('',{}).then(function(postedElement){
+				path = $routeParams.repository.concat('/').concat(maxId+1);
+				$location.path(path);
+			});
+		};
 	}
 ]);
