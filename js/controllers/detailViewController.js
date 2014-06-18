@@ -17,7 +17,6 @@ myApp.controller('detailViewController', [ '$scope', '$rootScope', '$routeParams
 				if(element._links.hasOwnProperty(property)){
 					if(property!='self'){
 						$scope.elementTables[property]=Restangular.allUrl(property,$scope.element._links[property].href).getList();
-						
 					}
 				}
 			}

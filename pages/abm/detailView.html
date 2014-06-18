@@ -24,7 +24,7 @@
 							</thead>
 							<tbody>
 								<tr ng-repeat="row in validRows(field.columns, elementTables[field.fieldId])"
-									class='clickableRow'>
+									ng-click="goTo(field.fieldId.concat('/').concat(row['id']))">
 									<td ng-repeat="column in field.columns">{{row[column.columnId]}}</td>
 								</tr>
 							</tbody>
@@ -39,7 +39,6 @@
 									ng-click="goTo(field.fieldId.concat('/').concat(elementTables[field.fieldId].$object[0]['id']))">
 									{{elementTables[field.fieldId].$object[0][field.referenceField.fieldId]}}
 								</button>
-							
 						</div>
 					</div>
 				</div>
