@@ -55,13 +55,13 @@ myApp.controller('DynamicABMController', [ '$scope', '$rootScope', '$routeParams
 		
 		$scope.save = function(){
 			$scope.element.put().then(function(){
-				console.log("Element saved");
+				bootbox.alert("Guardado");
 			});
 		};
 		
 		$scope.remove = function(){
 			$scope.element.remove().then(function(){
-				console.log("Element deleted");
+				bootbox.alert("Eliminado");
 				$scope.goBack();
 			});
 		};
