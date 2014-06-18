@@ -17,9 +17,12 @@ myApp.controller('DynamicABMController', [ '$scope', '$rootScope', '$routeParams
 				if(element._links.hasOwnProperty(property)){
 					if(property!='self'){
 						$scope.elementTables[property]=Restangular.allUrl(property,$scope.element._links[property].href).getList();
+						
 					}
 				}
 			}
+			
+			console.log($scope.elementTables);
 		});
 		
 		$scope.validRows = function(columns,rows){
@@ -61,6 +64,15 @@ myApp.controller('DynamicABMController', [ '$scope', '$rootScope', '$routeParams
 				console.log("Element deleted");
 				$scope.goBack();
 			});
+		};
+		
+		$scope.goTo = function(path){
+			console.log(path);
+			$location.path(path);
+		};
+		
+		$scope.log = function(object){
+			console.log(object);
 		};
 	}
 ]);

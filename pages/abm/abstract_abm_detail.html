@@ -23,8 +23,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr
-									ng-repeat="row in validRows(field.columns, elementTables[field.fieldId])"
+								<tr ng-repeat="row in validRows(field.columns, elementTables[field.fieldId])"
 									class='clickableRow'>
 									<td ng-repeat="column in field.columns">{{row[column.columnId]}}</td>
 								</tr>
@@ -35,11 +34,12 @@
 					<div ng-switch-when='reference'>
 						<label for="{{field.fieldId}}" class="col-sm-2 control-label">{{field.fieldName}}</label>
 						<div class="col-sm-10">
-							<a href="{{field.referenceField.fieldHRef}}">
-								<button type="button" class="form-control"
-									id="{{field.fieldId}}"
-									ng-model="field.referenceField.fieldValue">{{field.referenceField.fieldValue}}</button>
-							</a>
+							
+								<button type="button" class="form-control" id="{{field.fieldId}}" 
+									ng-click="goTo(field.fieldId.concat('/').concat(elementTables[field.fieldId].$object[0]['id']))">
+									{{elementTables[field.fieldId].$object[0][field.referenceField.fieldId]}}
+								</button>
+							
 						</div>
 					</div>
 				</div>

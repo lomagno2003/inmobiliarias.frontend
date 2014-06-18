@@ -17,7 +17,7 @@ var myApp = angular.module('myApp', ['ngResource','ngRoute','restangular'])
 	    	if(response.hasOwnProperty('_embedded')){
 		        newResponse = response._embedded[route];
 	    	} else {
-	    		newResponse = [];
+	    		newResponse = [response];
 	    	}
 	      } else {
 	        newResponse = response;
