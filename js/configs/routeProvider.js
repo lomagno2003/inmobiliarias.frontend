@@ -12,14 +12,14 @@ myApp.config(function($routeProvider) {
 	
 		// route for the about page
 	.when('/:repository/:id/', {
-		templateUrl : 'pages/abm/abstract_abm_detail.html',
-		controller : 'DynamicABMController'
+		templateUrl : 'pages/abm/detailView.html',
+		controller : 'detailViewController'
 	})
 
 	// route for the about page
 	.when('/:repository', {
-		templateUrl : 'pages/abm/abstract_abm.html',
-		controller : 'DynamicRepositoryController'
+		templateUrl : 'pages/abm/listView.html',
+		controller : 'listViewController'
 	});
 	
 

@@ -1,11 +1,11 @@
 var myApp = angular.module('myApp');
 
-myApp.controller('DynamicABMController', [ '$scope', '$rootScope', '$routeParams', '$location',
-	'RepositoryService','Restangular',
-	function($scope, $rootScope, $routeParams, $location, RepositoryService, Restangular) {	
-		repositoryService = RepositoryService.getRepository($routeParams.repository);
+myApp.controller('detailViewController', [ '$scope', '$rootScope', '$routeParams', '$location',
+	'viewDescriptorService','Restangular',
+	function($scope, $rootScope, $routeParams, $location, viewDescriptorService, Restangular) {	
+		descriptor = viewDescriptorService.getDescriptor($routeParams.repository);
 		
-		$scope.fields = repositoryService.viewStructure.fields;
+		$scope.fields = descriptor.viewStructure.fields;
 		
 		raElement = Restangular.one($routeParams.repository, $routeParams.id);
 
@@ -21,8 +21,6 @@ myApp.controller('DynamicABMController', [ '$scope', '$rootScope', '$routeParams
 					}
 				}
 			}
-			
-			console.log($scope.elementTables);
 		});
 		
 		$scope.validRows = function(columns,rows){
@@ -49,7 +47,6 @@ myApp.controller('DynamicABMController', [ '$scope', '$rootScope', '$routeParams
 		
 		
 		$scope.goBack = function(){
-			console.log($routeParams.repository);
 			$location.path($routeParams.repository);
 		};
 		
@@ -67,12 +64,7 @@ myApp.controller('DynamicABMController', [ '$scope', '$rootScope', '$routeParams
 		};
 		
 		$scope.goTo = function(path){
-			console.log(path);
 			$location.path(path);
-		};
-		
-		$scope.log = function(object){
-			console.log(object);
 		};
 	}
 ]);

@@ -1,7 +1,5 @@
-var myApp = angular.module('myApp');
-
-myApp.service('PropietariosService', function($resource) {
-	this.viewListStructure = {
+propietarioDescriptor = {
+	viewListStructure : {
 			title : "Detalles del propietario",
 			columns : [ {
 				'columnId' : 'nombre',
@@ -9,10 +7,8 @@ myApp.service('PropietariosService', function($resource) {
 			}, {
 				'columnId' : 'dni',
 				'columnName' : 'DNI'
-			}]	
-	};
-	
-	this.viewStructure = {
+			}]
+	}, viewStructure : {
 		title : "Detalles del propietario",
 		fields : [ {
 			'fieldId' : 'nombre',
@@ -47,5 +43,5 @@ myApp.service('PropietariosService', function($resource) {
 				'columnName' : 'Nombre'
 			} ]
 		} ]
-	};
-});
+	}
+};

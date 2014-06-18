@@ -1,15 +1,12 @@
-var myApp = angular.module('myApp');
-
-myApp.service('ConsorciosService', function($resource) {
-	this.viewListStructure = {
+consorcioDescriptor = {
+	'viewListStructure':{
 			title : "Detalles de la propiedad",
 			columns : [ {
 				'columnId' : 'nombre',
 				'columnName' : 'Nombre'
 			} ]	
-	};
-	
-	this.viewStructure = {
+	}, 
+	'viewStructure':{
 		title : "Detalles del consorcio",
 		fields : [ {
 			'fieldId' : 'nombre',
@@ -35,5 +32,5 @@ myApp.service('ConsorciosService', function($resource) {
 				'columnName' : 'Comentarios'
 			} ]
 		} ]
-	};
-});
+	}
+};

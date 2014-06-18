@@ -1,19 +1,17 @@
 var myApp = angular.module('myApp');
 
-myApp.controller('DynamicRepositoryController', [ '$scope', '$routeParams', '$location',
-	'RepositoryService','Restangular', 
-	function($scope, $routeParams, $location, RepositoryService, Restangular) {
+myApp.controller('listViewController', [ '$scope', '$routeParams', '$location',
+	'viewDescriptorService','Restangular', 
+	function($scope, $routeParams, $location, viewDescriptorService, Restangular) {
 	var maxId = 0;
 	
-	repositoryService = RepositoryService.getRepository($routeParams.repository);
-	
-	raElements = Restangular.all($routeParams.repository);
-		
-	raElements.getList().then(function(elements){
-		console.log(elements);
+	descriptor = viewDescriptorService.getDescriptor($routeParams.repository);
 
-		$scope.title = repositoryService.viewListStructure.title;
-		$scope.columns = repositoryService.viewListStructure.columns;
+	raElements = Restangular.all($routeParams.repository);
+
+	raElements.getList().then(function(elements){
+		$scope.title = descriptor.viewListStructure.title;
+		$scope.columns = descriptor.viewListStructure.columns;
 		$scope.rows = [];
 		
 		var rows = elements;
@@ -22,7 +20,6 @@ myApp.controller('DynamicRepositoryController', [ '$scope', '$routeParams', '$lo
 			if(row.id>maxId){
 				maxId = row.id;
 			}
-			console.log(row);
 			var newRow = {};
 			
 			newRow.href = $routeParams.repository.concat("/").concat(row.id);
@@ -42,12 +39,9 @@ myApp.controller('DynamicRepositoryController', [ '$scope', '$routeParams', '$lo
 		});
 
 		$scope.create = function(){
-			console.log('clicked');
-			console.log(maxId);
 			newElement = {};
 			
 			idKey = "id".concat($routeParams.repository.substring(0,1).toUpperCase()).concat($routeParams.repository.substring(1));
-			console.log(idKey);
 			newElement[idKey] = maxId+1;
 			
 			raNewElement = Restangular.all($routeParams.repository.concat('/')).post(newElement).then(function(postedElement){
@@ -57,7 +51,6 @@ myApp.controller('DynamicRepositoryController', [ '$scope', '$routeParams', '$lo
 		};
 		
 		$scope.goTo = function(path){
-			console.log(path);
 			$location.path(path);
 		};
 	}

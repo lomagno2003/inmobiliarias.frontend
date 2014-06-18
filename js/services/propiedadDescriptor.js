@@ -1,15 +1,11 @@
-var myApp = angular.module('myApp');
-
-myApp.service('PropiedadesService', function($resource) {
-	this.viewListStructure = {
+propiedadDescriptor = {
+	viewListStructure : {
 			title : "Detalles de la propiedad",
 			columns : [ {
 				'columnId' : 'nombre',
 				'columnName' : 'Nombre'
 			} ]	
-	};
-	
-	this.viewStructure = {
+	}, viewStructure : {
 		title : "Detalles de la propiedad",
 		fields : [ {
 			'fieldId' : 'nombre',
@@ -55,6 +51,5 @@ myApp.service('PropiedadesService', function($resource) {
 				'columnName' : 'Comentarios'
 			} ]
 		}]
-	};
-
-});
+	}
+};
