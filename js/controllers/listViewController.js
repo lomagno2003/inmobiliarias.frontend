@@ -20,6 +20,7 @@ myApp.controller('listViewController', [ '$scope', '$routeParams', '$location',
 			if(row.id>maxId){
 				maxId = row.id;
 			}
+			
 			var newRow = {};
 			
 			newRow.href = $routeParams.repository.concat("/").concat(row.id);
@@ -41,9 +42,10 @@ myApp.controller('listViewController', [ '$scope', '$routeParams', '$location',
 		$scope.create = function(){
 			newElement = {};
 			
-			idKey = "id".concat($routeParams.repository.substring(0,1).toUpperCase()).concat($routeParams.repository.substring(1));
-			newElement[idKey] = maxId+1;
+			idKey = descriptor.idField;
 			
+			newElement[idKey] = maxId+1;
+
 			raNewElement = Restangular.all($routeParams.repository.concat('/')).post(newElement).then(function(postedElement){
 				path = $routeParams.repository.concat('/').concat(maxId+1);
 				$location.path(path);

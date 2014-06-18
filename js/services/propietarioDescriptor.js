@@ -1,4 +1,5 @@
 propietarioDescriptor = {
+	'idField':'idPersona',
 	viewListStructure : {
 			title : "Detalles del propietario",
 			columns : [ {

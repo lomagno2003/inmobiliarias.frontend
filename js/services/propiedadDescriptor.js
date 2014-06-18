@@ -1,4 +1,5 @@
 propiedadDescriptor = {
+	'idField':'idPropiedad',
 	viewListStructure : {
 			title : "Detalles de la propiedad",
 			columns : [ {
