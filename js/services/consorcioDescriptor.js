@@ -1,13 +1,13 @@
 consorcioDescriptor = {
 	'idField':'idConsorcio',
-	'viewListStructure':{
+	'listView':{
 			title : "Consorcios",
 			columns : [ {
 				'columnId' : 'nombre',
 				'columnName' : 'Nombre'
 			} ]	
 	}, 
-	'viewStructure':{
+	'detailView':{
 		title : "Detalles del consorcio",
 		fields : [ {
 			'fieldId' : 'nombre',

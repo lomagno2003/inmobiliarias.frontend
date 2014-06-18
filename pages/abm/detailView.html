@@ -1,10 +1,10 @@
 <div class="row clearfix">
 	<div class="col-md-2 column"></div>
 	<div class="col-md-6 column">
-		<h3>{{title}}</h3>
+		<h3>{{descriptor.detailView.title}}</h3>
 		<form class="form-horizontal" role="form">
 
-			<div class="form-group" ng-repeat="field in fields">
+			<div class="form-group" ng-repeat="field in descriptor.detailView.fields">
 				<div ng-switch on="field.fieldType">
 					<div ng-switch-default>
 						<label for="{{field.fieldId}}" class="col-sm-2 control-label">{{field.fieldName}}</label>

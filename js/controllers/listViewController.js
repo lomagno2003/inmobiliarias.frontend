@@ -5,13 +5,11 @@ myApp.controller('listViewController', [ '$scope', '$routeParams', '$location',
 	function($scope, $routeParams, $location, viewDescriptorService, Restangular) {
 	var maxId = 0;
 	
-	descriptor = viewDescriptorService.getDescriptor($routeParams.repository);
+	$scope.descriptor = viewDescriptorService.getDescriptor($routeParams.repository);
 
-	raElements = Restangular.all($routeParams.repository);
-
-	raElements.getList().then(function(elements){
-		$scope.title = descriptor.viewListStructure.title;
-		$scope.columns = descriptor.viewListStructure.columns;
+	console.log($scope.descriptor);
+	
+	Restangular.all($routeParams.repository).getList().then(function(elements){
 		$scope.rows = [];
 		
 		var rows = elements;
@@ -27,7 +25,7 @@ myApp.controller('listViewController', [ '$scope', '$routeParams', '$location',
 
 			newRow.columns = [];
 			
-			_.forEach($scope.columns, function(column){
+			_.forEach($scope.descriptor.listView.columns, function(column){
 				newRow.columns.push({
 					'columnId':column.columnId,
 					'columnName':column.columnName,

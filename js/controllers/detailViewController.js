@@ -3,13 +3,9 @@ var myApp = angular.module('myApp');
 myApp.controller('detailViewController', [ '$scope', '$rootScope', '$routeParams', '$location',
 	'viewDescriptorService','Restangular',
 	function($scope, $rootScope, $routeParams, $location, viewDescriptorService, Restangular) {	
-		descriptor = viewDescriptorService.getDescriptor($routeParams.repository);
-		
-		$scope.fields = descriptor.viewStructure.fields;
-		
-		raElement = Restangular.one($routeParams.repository, $routeParams.id);
+		$scope.descriptor = viewDescriptorService.getDescriptor($routeParams.repository);
 
-		raElement.get().then(function(element){
+		Restangular.one($routeParams.repository, $routeParams.id).get().then(function(element){
 			$scope.element = element;
 			$scope.elementTables = {};
 			

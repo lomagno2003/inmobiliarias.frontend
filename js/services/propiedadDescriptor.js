@@ -1,12 +1,12 @@
 propiedadDescriptor = {
 	'idField':'idPropiedad',
-	viewListStructure : {
+	'listView' : {
 			title : "Detalles de la propiedad",
 			columns : [ {
 				'columnId' : 'nombre',
 				'columnName' : 'Nombre'
 			} ]	
-	}, viewStructure : {
+	}, 'detailView' : {
 		title : "Detalles de la propiedad",
 		fields : [ {
 			'fieldId' : 'nombre',

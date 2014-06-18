@@ -1,6 +1,6 @@
 propietarioDescriptor = {
 	'idField':'idPersona',
-	viewListStructure : {
+	'listView' : {
 			title : "Detalles del propietario",
 			columns : [ {
 				'columnId' : 'nombre',
@@ -9,7 +9,7 @@ propietarioDescriptor = {
 				'columnId' : 'dni',
 				'columnName' : 'DNI'
 			}]
-	}, viewStructure : {
+	}, 'detailView' : {
 		title : "Detalles del propietario",
 		fields : [ {
 			'fieldId' : 'nombre',
