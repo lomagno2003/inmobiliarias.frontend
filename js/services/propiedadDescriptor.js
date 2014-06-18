@@ -1,7 +1,7 @@
 propiedadDescriptor = {
 	'idField':'idPropiedad',
 	'listView' : {
-			title : "Detalles de la propiedad",
+			title : "Propiedades",
 			columns : [ {
 				'columnId' : 'nombre',
 				'columnName' : 'Nombre'

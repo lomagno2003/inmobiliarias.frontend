@@ -20,6 +20,12 @@ myApp.config(function($routeProvider) {
 	.when('/:repository', {
 		templateUrl : 'pages/abm/listView.html',
 		controller : 'listViewController'
+	})
+	
+	// route for the about page
+	.when('/:repository/:id/:repositoryItem', {
+		templateUrl : 'pages/abm/listView.html',
+		controller : 'selectItemViewController'
 	});
 	
 

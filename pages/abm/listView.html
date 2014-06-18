@@ -1,6 +1,6 @@
 <div class="row clearfix">
 	<div class="col-md-12 column">
-		<h3>{{title}}</h3>
+		<h3>{{descriptor.listView.title}}</h3>
 		<table class="table table-hover">
 			<thead>
 				<tr>
@@ -8,12 +8,12 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="row in rows" ng-click='goTo(row.href)'>
+				<tr ng-repeat="row in rows" ng-click='selectItem(row)'>
 					<td ng-repeat="column in row.columns">{{column.columnValue}}</td>
 				</tr>
 			</tbody>
 		</table>
-		<div class="btn-group">
+		<div ng-if="create" class="btn-group">
 		  <button type="button" class="btn btn-default" ng-click="create()">Crear</button>
 		</div>
 	</div>

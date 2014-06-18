@@ -58,6 +58,11 @@ myApp.controller('detailViewController', [ '$scope', '$rootScope', '$routeParams
 			});
 		};
 		
+		$scope.changeReference = function(fieldId){
+			path = $routeParams.repository.concat('/').concat($routeParams.id).concat('/').concat(fieldId);
+			$location.path(path);
+		};
+		
 		$scope.goTo = function(path){
 			$location.path(path);
 		};

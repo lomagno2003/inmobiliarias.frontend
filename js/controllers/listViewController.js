@@ -6,8 +6,6 @@ myApp.controller('listViewController', [ '$scope', '$routeParams', '$location',
 	var maxId = 0;
 	
 	$scope.descriptor = viewDescriptorService.getDescriptor($routeParams.repository);
-
-	console.log($scope.descriptor);
 	
 	Restangular.all($routeParams.repository).getList().then(function(elements){
 		$scope.rows = [];
@@ -40,7 +38,7 @@ myApp.controller('listViewController', [ '$scope', '$routeParams', '$location',
 		$scope.create = function(){
 			newElement = {};
 			
-			idKey = descriptor.idField;
+			idKey = $scope.descriptor.idField;
 			
 			newElement[idKey] = maxId+1;
 
@@ -50,8 +48,8 @@ myApp.controller('listViewController', [ '$scope', '$routeParams', '$location',
 			});
 		};
 		
-		$scope.goTo = function(path){
-			$location.path(path);
+		$scope.selectItem = function(item){
+			$location.path(item.href);
 		};
 	}
 ]);
