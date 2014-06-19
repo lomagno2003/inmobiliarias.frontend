@@ -10,6 +10,26 @@ gastoDescriptor = {
 				'columnId' : 'comprobante',
 				'columnName' : 'Comprobante',
 				'columnType' : 'text'
+			}, {
+				'columnId' : 'consorcio',
+				'columnName' : 'Consorcio',
+				'columnType' : 'manyToOne',
+				'relationshipDescriptor' :  
+			    {
+					'fieldId' : 'nombre',
+					'fieldName' : 'Nombre',
+					'fieldType' : 'text'	
+			    }
+			}, {
+				'columnId' : 'propiedad',
+				'columnName' : 'Propiedad',
+				'columnType' : 'manyToOne',
+				'relationshipDescriptor' :  
+			    {
+					'fieldId' : 'nombre',
+					'fieldName' : 'Nombre',
+					'fieldType' : 'text'	
+			    }
 			}]
 	}, 'detailView' : {
 		title : "Detalles del gasto",

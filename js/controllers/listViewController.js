@@ -8,29 +8,25 @@ myApp.controller('listViewController', [ '$scope', '$routeParams', '$location',
 	$scope.descriptor = viewDescriptorService.getDescriptor($routeParams.repository);
 	
 	Restangular.all($routeParams.repository).getList().then(function(elements){
-		$scope.rows = [];
+		$scope.elements = elements;
 		
-		var rows = elements;
-
-		_.forEach(rows, function(row){
-			if(row.id>maxId){
+		_.forEach($scope.elements, function(row){
+			if(row[$scope.descriptor.fieldId]>maxId){
 				maxId = row.id;
 			}
-			
-			var newRow = {};
-			
-			newRow.href = $routeParams.repository.concat("/").concat(row.id);
-
-			newRow.columns = [];
+						
+			row.href = $routeParams.repository.concat("/").concat(row['id']);
 			
 			_.forEach($scope.descriptor.listView.columns, function(column){
-				newRow.columns.push({
-					'columnId':column.columnId,
-					'columnName':column.columnName,
-					'columnValue':row[column.columnId]
-				});
+				if(column.columnType=='manyToOne'){
+					foreignFieldId=column.columnId;
+
+					Restangular.oneUrl(foreignFieldId,row._links[foreignFieldId].href).get().then(function(result){
+						console.log(column.relationshipDescriptor.fieldId);
+						row[column.columnId] = result[column.relationshipDescriptor.fieldId];
+					});
+				}
 			});
-			$scope.rows.push(newRow);
 		});
 
 		});

@@ -8,8 +8,8 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="row in rows" ng-click='selectItem(row)'>
-					<td ng-repeat="column in row.columns">{{column.columnValue}}</td>
+				<tr ng-repeat="row in elements" ng-click='selectItem(row)'>
+					<td ng-repeat="column in descriptor.listView.columns">{{row[column.columnId]}}</td>
 				</tr>
 			</tbody>
 		</table>
