@@ -23,8 +23,8 @@ propiedadDescriptor = {
 		}, {
 			'fieldId' : 'consorcio',
 			'fieldName' : 'Consorcio',
-			'fieldType' : 'reference',
-			'referenceField' :  
+			'fieldType' : 'manyToOne',
+			'relationshipDescriptor' :  
 			    {
 					'fieldId' : 'nombre',
 					'fieldName' : 'Nombre',
@@ -33,8 +33,8 @@ propiedadDescriptor = {
 		}, {
 			'fieldId' : 'propietario',
 			'fieldName' : 'Propietario',
-			'fieldType' : 'reference',
-			'referenceField' :  
+			'fieldType' : 'manyToOne',
+			'relationshipDescriptor' :  
 			    {
 					'fieldId' : 'nombre',
 					'fieldName' : 'Nombre',
@@ -43,13 +43,15 @@ propiedadDescriptor = {
 		}, {
 			'fieldId' : 'gasto',
 			'fieldName' : 'Gastos',
-			'fieldType' : 'table',
-			'columns' : [ {
-				'columnId' : 'monto',
-				'columnName' : 'Monto'
+			'fieldType' : 'oneToMany',
+			'relationshipDescriptor' : [ {
+				'fieldId' : 'monto',
+				'fieldName' : 'Monto',
+				'fieldType' : 'text'
 			}, {
-				'columnId' : 'comentarios',
-				'columnName' : 'Comentarios'
+				'fieldId' : 'comentarios',
+				'fieldName' : 'Comentarios',
+				'fieldType' : 'text'
 			} ]
 		}]
 	}

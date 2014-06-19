@@ -26,7 +26,7 @@ myApp.controller('detailViewController', [ '$scope', '$rootScope', '$routeParams
 				_.forEach(rows, function(row){
 					include = true;
 					_.forEach(columns, function(column){
-						if(!(row.hasOwnProperty(column.columnId))){
+						if(!(row.hasOwnProperty(column.fieldId))){
 							include = false;
 						}
 					});

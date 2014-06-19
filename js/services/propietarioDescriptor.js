@@ -38,10 +38,11 @@ propietarioDescriptor = {
 		}, {
 			'fieldId' : 'propiedad',
 			'fieldName' : 'Propiedades',
-			'fieldType' : 'table',
-			'columns' : [ {
-				'columnId' : 'nombre',
-				'columnName' : 'Nombre'
+			'fieldType' : 'oneToMany',
+			'relationshipDescriptor' : [ {
+				'fieldId' : 'nombre',
+				'fieldName' : 'Nombre',
+				'fieldType' : 'text'
 			} ]
 		} ]
 	}

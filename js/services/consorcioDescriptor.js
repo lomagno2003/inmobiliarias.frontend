@@ -16,21 +16,24 @@ consorcioDescriptor = {
 		}, {
 			'fieldId' : 'propiedad',
 			'fieldName' : 'Propiedades',
-			'fieldType' : 'table',
-			'columns' : [ {
-				'columnId' : 'nombre',
-				'columnName' : 'Nombre'
+			'fieldType' : 'oneToMany',
+			'relationshipDescriptor' : [ {
+				'fieldId' : 'nombre',
+				'fieldName' : 'Nombre',
+				'fieldType' : 'text'
 			} ]
 		}, {
 			'fieldId' : 'gasto',
 			'fieldName' : 'Gastos',
-			'fieldType' : 'table',
-			'columns' : [ {
-				'columnId' : 'monto',
-				'columnName' : 'Monto'
+			'fieldType' : 'oneToMany',
+			'relationshipDescriptor' : [ {
+				'fieldId' : 'monto',
+				'fieldName' : 'Monto',
+				'fieldType' : 'text'
 			}, {
-				'columnId' : 'comentarios',
-				'columnName' : 'Comentarios'
+				'fieldId' : 'comentarios',
+				'fieldName' : 'Comentarios',
+				'fieldType' : 'text'
 			} ]
 		} ]
 	}

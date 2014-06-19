@@ -14,6 +14,9 @@ myApp.service('viewDescriptorService',['$routeParams',function($routeParams) {
 		case 'propietario':
 			repositoryService = propietarioDescriptor;
 			break;
+		case 'gasto':
+			repositoryService = gastoDescriptor;
+			break;
 		}
     	
     	return repositoryService;
