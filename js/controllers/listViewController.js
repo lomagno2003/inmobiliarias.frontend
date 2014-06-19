@@ -11,7 +11,7 @@ myApp.controller('listViewController', [ '$scope', '$routeParams', '$location',
 		$scope.elements = elements;
 		
 		_.forEach($scope.elements, function(row){
-			if(row[$scope.descriptor.fieldId]>maxId){
+			if(row.id>maxId){
 				maxId = row.id;
 			}
 						
@@ -37,7 +37,7 @@ myApp.controller('listViewController', [ '$scope', '$routeParams', '$location',
 			idKey = $scope.descriptor.idField;
 			
 			newElement[idKey] = maxId+1;
-
+			console.log(maxId+1);
 			raNewElement = Restangular.all($routeParams.repository.concat('/')).post(newElement).then(function(postedElement){
 				path = $routeParams.repository.concat('/').concat(maxId+1);
 				$location.path(path);

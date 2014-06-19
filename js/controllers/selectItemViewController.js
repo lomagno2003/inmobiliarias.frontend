@@ -7,32 +7,28 @@ myApp.controller('selectItemViewController', [ '$scope', '$routeParams', '$locat
 	$scope.descriptor = viewDescriptorService.getDescriptor($routeParams.repositoryItem);
 	
 	Restangular.all($routeParams.repositoryItem).getList().then(function(elements){
-		$scope.rows = [];
+		$scope.elements = elements;
 		
-		var rows = elements;
-
-		_.forEach(rows, function(row){			
-			var newRow = {};
-						
-			newRow.href = row._links.self;
-
-			newRow.columns = [];
+		_.forEach($scope.elements, function(row){						
+			row.href = $routeParams.repositoryItem.concat("/").concat(row['id']);
 			
 			_.forEach($scope.descriptor.listView.columns, function(column){
-				newRow.columns.push({
-					'columnId':column.columnId,
-					'columnName':column.columnName,
-					'columnValue':row[column.columnId]
-				});
+				if(column.columnType=='manyToOne'){
+					foreignFieldId=column.columnId;
+
+					Restangular.oneUrl(foreignFieldId,row._links[foreignFieldId].href).get().then(function(result){
+						console.log(column.relationshipDescriptor.fieldId);
+						row[column.columnId] = result[column.relationshipDescriptor.fieldId];
+					});
+				}
 			});
-			$scope.rows.push(newRow);
 		});
 
 		});
 		
 		$scope.selectItem = function(item){
 			Restangular.one($routeParams.repository, $routeParams.id).get().then(function(element){
-				element[$routeParams.repositoryItem] = item.href.href;
+				element[$routeParams.repositoryItem] = item.href;
 				element.put().then(function(result){
 					bootbox.alert("Cambiado");
 					path = $routeParams.repository.concat('/').concat($routeParams.id);
