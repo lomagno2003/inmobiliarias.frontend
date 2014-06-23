@@ -66,5 +66,23 @@ myApp.controller('detailViewController', [ '$scope', '$rootScope', '$routeParams
 		$scope.goTo = function(path){
 			$location.path(path);
 		};
+		
+		$scope.create = function(repository){
+			newElement = {};
+			
+			idKey = 'id'.concat(repository.substring(0,1).toUpperCase()).concat(repository.substring(1));
+			idValue = 4;
+			selfPath = $scope.element._links.self.href;
+
+			newElement[idKey] = idValue;
+			
+			newElement[$routeParams.repository] = selfPath;
+			
+			console.log(idValue);
+			raNewElement = Restangular.all(repository.concat('/')).post(newElement).then(function(postedElement){
+				path = repository.concat('/').concat(idValue);
+				$location.path(path);
+			});
+		};
 	}
 ]);
