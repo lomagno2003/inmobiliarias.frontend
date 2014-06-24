@@ -3,6 +3,11 @@ var myApp = angular.module('myApp');
 // configure our routes
 myApp.config(function($routeProvider) {
 	$routeProvider
+	
+	.when('/error/:errorId', {
+		templateUrl : 'app/views/error/',
+		controller : 'errorViewController'
+	})
 
 	// route for the home page
 	.when('/', {
@@ -26,5 +31,8 @@ myApp.config(function($routeProvider) {
 	.when('/:repository/:id/:repositoryItem', {
 		templateUrl : 'app/views/abm/list/',
 		controller : 'selectItemViewController'
+			
 	});
+	
+	
 });

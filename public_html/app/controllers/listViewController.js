@@ -29,6 +29,12 @@ myApp.controller('listViewController', [ '$scope', '$routeParams', '$location',
 			});
 		});
 
+		}, function(errorStatus){
+			switch(errorStatus.status){
+			case 404:
+				$location.path('/error/rest_server_offline');				
+				break;
+			};
 		});
 
 		$scope.create = function(){

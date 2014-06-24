@@ -16,6 +16,12 @@ myApp.controller('detailViewController', [ '$scope', '$rootScope', '$routeParams
 					}
 				}
 			}
+		}, function(errorStatus){
+			switch(errorStatus.status){
+			case 404:
+				$location.path('/error/rest_server_offline');				
+				break;
+			};
 		});
 		
 		$scope.validRows = function(columns,rows){
