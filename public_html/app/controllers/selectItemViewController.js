@@ -6,6 +6,10 @@ myApp.controller('selectItemViewController', [ '$scope', '$routeParams', '$locat
 	
 	$scope.descriptor = viewDescriptorService.getDescriptor($routeParams.repositoryItem);
 	
+	if(!$scope.descriptor){
+		$location.path('/error/not_found');
+	}
+	
 	Restangular.all($routeParams.repositoryItem).getList().then(function(elements){
 		$scope.elements = elements;
 		

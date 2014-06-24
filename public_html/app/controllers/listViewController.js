@@ -7,6 +7,10 @@ myApp.controller('listViewController', [ '$scope', '$routeParams', '$location',
 	
 	$scope.descriptor = viewDescriptorService.getDescriptor($routeParams.repository);
 	
+	if(!$scope.descriptor){
+		$location.path('/error/not_found');
+	}
+	
 	Restangular.all($routeParams.repository).getList().then(function(elements){
 		$scope.elements = elements;
 		

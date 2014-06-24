@@ -5,7 +5,12 @@ myApp.controller('detailViewController', [ '$scope', '$rootScope', '$routeParams
 	function($scope, $rootScope, $routeParams, $location, viewDescriptorService, Restangular) {	
 		$scope.descriptor = viewDescriptorService.getDescriptor($routeParams.repository);
 
+		if(!$scope.descriptor){
+			$location.path('/error/not_found');
+		}
+		
 		Restangular.one($routeParams.repository, $routeParams.id).get().then(function(element){
+			console.log($routeParams.id);
 			$scope.element = element;
 			$scope.elementTables = {};
 			
@@ -52,6 +57,7 @@ myApp.controller('detailViewController', [ '$scope', '$rootScope', '$routeParams
 		};
 		
 		$scope.save = function(){
+			console.log($scope.element);
 			$scope.element.put().then(function(){
 				bootbox.alert("Guardado");
 			});
