@@ -6,27 +6,25 @@ myApp.config(function($routeProvider) {
 
 	// route for the home page
 	.when('/', {
-		templateUrl : 'pages/home.html',
+		templateUrl : 'app/views/tiles/home.html',
 		controller : 'mainController'
 	})
 	
 		// route for the about page
 	.when('/:repository/:id/', {
-		templateUrl : 'pages/abm/detailView.html',
+		templateUrl : 'app/views/abm/detail/',
 		controller : 'detailViewController'
 	})
 
 	// route for the about page
 	.when('/:repository', {
-		templateUrl : 'pages/abm/listView.html',
+		templateUrl : 'app/views/abm/list/',
 		controller : 'listViewController'
 	})
 	
 	// route for the about page
 	.when('/:repository/:id/:repositoryItem', {
-		templateUrl : 'pages/abm/listView.html',
+		templateUrl : 'app/views/abm/list/',
 		controller : 'selectItemViewController'
 	});
-	
-
 });
