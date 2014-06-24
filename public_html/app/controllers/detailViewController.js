@@ -10,7 +10,6 @@ myApp.controller('detailViewController', [ '$scope', '$rootScope', '$routeParams
 		}
 		
 		Restangular.one($routeParams.repository, $routeParams.id).get().then(function(element){
-			console.log($routeParams.id);
 			$scope.element = element;
 			$scope.elementTables = {};
 			
@@ -57,7 +56,6 @@ myApp.controller('detailViewController', [ '$scope', '$rootScope', '$routeParams
 		};
 		
 		$scope.save = function(){
-			console.log($scope.element);
 			$scope.element.put().then(function(){
 				bootbox.alert("Guardado");
 			});
@@ -90,7 +88,6 @@ myApp.controller('detailViewController', [ '$scope', '$rootScope', '$routeParams
 			
 			newElement[$routeParams.repository] = selfPath;
 			
-			console.log(idValue);
 			raNewElement = Restangular.all(repository.concat('/')).post(newElement).then(function(postedElement){
 				path = repository.concat('/').concat(idValue);
 				$location.path(path);

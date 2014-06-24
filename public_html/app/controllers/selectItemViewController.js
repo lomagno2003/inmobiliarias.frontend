@@ -21,7 +21,6 @@ myApp.controller('selectItemViewController', [ '$scope', '$routeParams', '$locat
 					foreignFieldId=column.columnId;
 
 					Restangular.oneUrl(foreignFieldId,row._links[foreignFieldId].href).get().then(function(result){
-						console.log(column.relationshipDescriptor.fieldId);
 						row[column.columnId] = result[column.relationshipDescriptor.fieldId];
 					});
 				}

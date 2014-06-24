@@ -26,7 +26,6 @@ myApp.controller('listViewController', [ '$scope', '$routeParams', '$location',
 					foreignFieldId=column.columnId;
 
 					Restangular.oneUrl(foreignFieldId,row._links[foreignFieldId].href).get().then(function(result){
-						console.log(column.relationshipDescriptor.fieldId);
 						row[column.columnId] = result[column.relationshipDescriptor.fieldId];
 					});
 				}
@@ -47,7 +46,6 @@ myApp.controller('listViewController', [ '$scope', '$routeParams', '$location',
 			idKey = $scope.descriptor.idField;
 			
 			newElement[idKey] = maxId+1;
-			console.log(maxId+1);
 			raNewElement = Restangular.all($routeParams.repository.concat('/')).post(newElement).then(function(postedElement){
 				path = $routeParams.repository.concat('/').concat(maxId+1);
 				$location.path(path);
