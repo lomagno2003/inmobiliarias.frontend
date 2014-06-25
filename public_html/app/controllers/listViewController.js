@@ -24,6 +24,8 @@ myApp.controller('listViewController', [ '$scope', '$routeParams', '$location',
 	
 						Restangular.oneUrl(foreignFieldId,row._links[foreignFieldId].href).get().then(function(result){
 							row[column.columnId] = result[column.relationshipDescriptor.fieldId];
+						}, function(error){
+							row[column.columnId] = "Desconocido";
 						});
 					}
 				});
