@@ -9,24 +9,28 @@ myApp.controller('detailViewController', [ '$scope', '$rootScope', '$routeParams
 			$location.path('/error/not_found');
 		}
 		
-		Restangular.one($routeParams.repository, $routeParams.id).get().then(function(element){
-			$scope.element = element;
-			$scope.elementTables = {};
-			
-			for(var property in element._links){
-				if(element._links.hasOwnProperty(property)){
-					if(property!='self'){
-						$scope.elementTables[property]=Restangular.allUrl(property,$scope.element._links[property].href).getList();
+		$scope.loadData = function(){
+			Restangular.one($routeParams.repository, $routeParams.id).get().then(function(element){
+				$scope.element = element;
+				$scope.elementTables = {};
+				
+				for(var property in element._links){
+					if(element._links.hasOwnProperty(property)){
+						if(property!='self'){
+							$scope.elementTables[property]=Restangular.allUrl(property,$scope.element._links[property].href).getList();
+						}
 					}
 				}
-			}
-		}, function(errorStatus){
-			switch(errorStatus.status){
-			case 404:
-				$location.path('/error/rest_server_offline');				
-				break;
-			};
-		});
+			}, function(errorStatus){
+				switch(errorStatus.status){
+				case 404:
+					$location.path('/error/rest_server_offline');				
+					break;
+				};
+			});
+		};
+		
+		$scope.loadData();
 		
 		$scope.validRows = function(columns,rows){
 			var result = [];
@@ -79,18 +83,13 @@ myApp.controller('detailViewController', [ '$scope', '$rootScope', '$routeParams
 		
 		$scope.create = function(repository){
 			newElement = {};
-			
-			idKey = 'id'.concat(repository.substring(0,1).toUpperCase()).concat(repository.substring(1));
-			idValue = 4;
-			selfPath = $scope.element._links.self.href;
 
-			newElement[idKey] = idValue;
+			selfPath = $scope.element._links.self.href;
 			
 			newElement[$routeParams.repository] = selfPath;
 			
 			raNewElement = Restangular.all(repository.concat('/')).post(newElement).then(function(postedElement){
-				path = repository.concat('/').concat(idValue);
-				$location.path(path);
+				$scope.loadData();
 			});
 		};
 	}
