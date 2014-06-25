@@ -54,7 +54,7 @@
 									</button>
 									<ul class="dropdown-menu" role="menu">
 										<li ng-if="field.fieldDisabled != 'true'"><a ng-click="changeReference(field.fieldId)">Cambiar</a></li>
-										<li><a ng-click="goTo(field.fieldId.concat('/').concat(elementTables[field.fieldId].$object[0]['id']))">Ir</a></li>
+										<li ng-if="elementTables[field.fieldId].$object[0]"><a ng-click="goTo(field.fieldId.concat('/').concat(elementTables[field.fieldId].$object[0]['id']))">Ir</a></li>
 									</ul>
 								</div>
 							</div>

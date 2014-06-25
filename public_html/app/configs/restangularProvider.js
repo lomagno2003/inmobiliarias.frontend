@@ -10,7 +10,10 @@ myApp.config(function(RestangularProvider) {
 	    	if(response.hasOwnProperty('_embedded')){
 		        newResponse = response._embedded[route];
 	    	} else {
-	    		newResponse = [];
+	    		if(response)
+	    			newResponse = [response];
+	    		else
+	    			newResponse = [];
 	    	}
 	      } else {
 	        newResponse = response;
