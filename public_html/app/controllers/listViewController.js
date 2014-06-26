@@ -50,6 +50,14 @@ myApp.controller('listViewController', [ '$scope', '$routeParams', '$location',
 			});
 		};
 		
+		$scope.formatColumn = function(column){
+			if(column){
+				return column;
+			} else {
+				return "Desconocido";
+			}
+		};
+		
 		$scope.selectItem = function(item){
 			$location.path(item.href);
 		};

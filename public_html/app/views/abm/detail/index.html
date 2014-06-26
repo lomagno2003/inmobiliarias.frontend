@@ -33,7 +33,7 @@
 								<tr
 									ng-repeat="row in validRows(field.relationshipDescriptor, elementTables[field.fieldId])"
 									ng-click="goTo(field.fieldId.concat('/').concat(row['id']))">
-									<td ng-repeat="column in field.relationshipDescriptor">{{row[column.fieldId]}}</td>
+									<td ng-repeat="column in field.relationshipDescriptor">{{formatColumn(row[column.fieldId])}}</td>
 								</tr>
 							</tbody>
 						</table>
@@ -66,7 +66,7 @@
 
 			<div class="btn-group pull-right">
 				<button type="button" class="btn btn-default" ng-click="goBack()">Volver</button>
-				<button type="button" class="btn btn-default" ng-click="generateReport()">Generar reporte</button>
+				<button type="button" class="btn btn-default" ng-click="generateReport()" ng-if="descriptor.reportName">Generar reporte</button>
 				<button type="submit" class="btn btn-default" ng-click="save()">Guardar</button>
 				<button type="submit" class="btn btn-default" ng-click="remove()">Eliminar</button>
 			</div>

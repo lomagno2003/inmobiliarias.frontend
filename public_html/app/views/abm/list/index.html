@@ -9,7 +9,7 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="row in elements" ng-click='selectItem(row)'>
-					<td ng-repeat="column in descriptor.listView.columns">{{row[column.columnId]}}</td>
+					<td ng-repeat="column in descriptor.listView.columns">{{formatColumn(row[column.columnId])}}</td>
 				</tr>
 			</tbody>
 		</table>

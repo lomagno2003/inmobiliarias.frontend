@@ -121,6 +121,14 @@ myApp.controller('detailViewController', [ '$scope', '$rootScope', '$routeParams
 			jasperConnectorService.generateReport("detailPropiedad",result);
 		};
 		
+		$scope.formatColumn = function(column){
+			if(column){
+				return column;
+			} else {
+				return "Desconocido";
+			}
+		};
+		
 		/**
 		 * Initialization
 		 */

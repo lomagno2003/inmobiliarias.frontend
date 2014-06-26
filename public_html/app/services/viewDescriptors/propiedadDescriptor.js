@@ -1,5 +1,6 @@
 propiedadDescriptor = {
 	'idField':'idPropiedad',
+	'reportName':'detailPropiedad',
 	'listView' : {
 			title : "Propiedades",
 			columns : [ {
