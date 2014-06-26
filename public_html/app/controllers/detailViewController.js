@@ -1,14 +1,12 @@
 var myApp = angular.module('myApp');
 
 myApp.controller('detailViewController', [ '$scope', '$rootScope', '$routeParams', '$location',
-	'viewDescriptorService','Restangular',
-	function($scope, $rootScope, $routeParams, $location, viewDescriptorService, Restangular) {	
-		$scope.descriptor = viewDescriptorService.getDescriptor($routeParams.repository);
-
-		if(!$scope.descriptor){
-			$location.path('/error/not_found');
-		}
-		
+	'viewDescriptorService','Restangular', 'jasperConnectorService',
+	function($scope, $rootScope, $routeParams, $location, viewDescriptorService, Restangular, jasperConnectorService) {
+		/**
+		 * Functions definitions
+		 */
+	
 		$scope.loadData = function(){
 			Restangular.one($routeParams.repository, $routeParams.id).get().then(function(element){
 				$scope.element = element;
@@ -29,8 +27,6 @@ myApp.controller('detailViewController', [ '$scope', '$rootScope', '$routeParams
 				};
 			});
 		};
-		
-		$scope.loadData();
 		
 		$scope.validRows = function(columns,rows){
 			var result = [];
@@ -69,6 +65,12 @@ myApp.controller('detailViewController', [ '$scope', '$rootScope', '$routeParams
 			$scope.element.remove().then(function(){
 				bootbox.alert("Eliminado");
 				$scope.goBack();
+			}, function(error){
+				switch(error.status){
+				case 409:
+					bootbox.alert("No se pudo eliminar debido a problemas de dependencias");
+					break;
+				}
 			});
 		};
 		
@@ -92,5 +94,43 @@ myApp.controller('detailViewController', [ '$scope', '$rootScope', '$routeParams
 				$scope.loadData();
 			});
 		};
+		
+		$scope.generateReport = function(){
+			console.log("Getting JSONObject");
+			
+			var result = {};
+			
+			_.forEach($scope.descriptor.detailView.fields, function(field){
+				switch(field.fieldType){
+				case "oneToMany":
+					//TODO Filter the methods of RESTANGULAR
+					result[field.fieldId] = $scope.elementTables[field.fieldId];
+					break;
+				case "manyToOne":
+					result[field.fieldId] = $scope.elementTables[field.fieldId].$object[0][field.relationshipDescriptor.fieldId];
+					break;
+				default:
+					result[field.fieldId] = $scope.element[field.fieldId];
+					break;
+				};
+			});
+			
+			console.log("Result:");
+			console.log(result);
+			
+			jasperConnectorService.generateReport("detailPropiedad",result);
+		};
+		
+		/**
+		 * Initialization
+		 */
+	
+		$scope.descriptor = viewDescriptorService.getDescriptor($routeParams.repository);
+
+		if(!$scope.descriptor){
+			$location.path('/error/not_found');
+		}
+		
+		$scope.loadData();
 	}
 ]);
