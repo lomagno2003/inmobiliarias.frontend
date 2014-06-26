@@ -1,14 +1,8 @@
-<div ng-switch="errorId">
-	<div ng-switch-when="rest_server_offline">
-		Rest server is offline
-	</div>
-	<div ng-switch-when="jasper_server_offline">
-		Jasper server is offline
-	</div>
-	<div ng-switch-when="not_found">
-		URL not found
-	</div>
-	<div ng-switch-default>
-		Unknow error
+<div class="col-md-3 column ui-sortable"></div>
+<div class="col-md-6 column ui-sortable">
+	<div class="jumbotron well" contenteditable="true">
+		<h2>{{errorTitle}}</h1>
+		<p>{{errorMessage}}</p>
 	</div>
 </div>
+<div class="col-md-3 column ui-sortable"></div>
