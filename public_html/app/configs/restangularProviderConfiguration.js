@@ -1,8 +1,8 @@
 var myApp = angular.module('myApp');
 
-myApp.config(function(RestangularProvider) {
+myApp.config(function(RestangularProvider,constants) {
 	  RestangularProvider.setBaseUrl(
-	    'http://localhost:8082/rest/');
+			  constants.restServerURI);
 	  
 	  RestangularProvider.setResponseInterceptor(function(response, operation, route, url) {
 		  var newResponse;
