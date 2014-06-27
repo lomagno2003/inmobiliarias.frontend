@@ -101,10 +101,23 @@ myApp.controller('detailViewController', [ '$scope', '$rootScope', '$routeParams
 			var result = {};
 			
 			_.forEach($scope.descriptor.detailView.fields, function(field){
+				console.log("Field ID: ".concat(field.fieldId));
 				switch(field.fieldType){
 				case "oneToMany":
-					//TODO Filter the methods of RESTANGULAR
-					result[field.fieldId] = $scope.elementTables[field.fieldId];
+					result[field.fieldId] = [];
+					_.forEach($scope.elementTables[field.fieldId],function(row){
+						if(typeof row === 'object'){
+							newRow = {};
+
+							_.forEach(field.relationshipDescriptor, function(column){
+								newRow[column.fieldId] = row[column.fieldId];
+								console.log("Column:".concat(column.fieldId));
+								console.log(row[column.fieldId]);
+							});
+							
+							result[field.fieldId].push(newRow);
+						}
+					});
 					break;
 				case "manyToOne":
 					result[field.fieldId] = $scope.elementTables[field.fieldId].$object[0][field.relationshipDescriptor.fieldId];
