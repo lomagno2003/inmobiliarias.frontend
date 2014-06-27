@@ -1,5 +1,6 @@
 consorcioDescriptor = {
 	'idField':'idConsorcio',
+	'reportName':'detailConsorcio',
 	'listView':{
 			title : "Consorcios",
 			columns : [ {

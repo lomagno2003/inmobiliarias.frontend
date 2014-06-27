@@ -131,7 +131,7 @@ myApp.controller('detailViewController', [ '$scope', '$rootScope', '$routeParams
 			console.log("Result:");
 			console.log(result);
 			
-			jasperConnectorService.generateReport("detailPropiedad",result);
+			jasperConnectorService.generateReport("detail".concat($routeParams.repository.substring(0,1).toUpperCase()).concat($routeParams.repository.substring(1)),result);
 		};
 		
 		$scope.formatColumn = function(column){
