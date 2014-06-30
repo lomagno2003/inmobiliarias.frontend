@@ -105,14 +105,12 @@ myApp.controller('detailViewController', [ '$scope', '$rootScope', '$routeParams
 				switch(field.fieldType){
 				case "oneToMany":
 					result[field.fieldId] = [];
-					_.forEach($scope.elementTables[field.fieldId],function(row){
+					_.forEach($scope.elementTables[field.fieldId].$object,function(row){
 						if(typeof row === 'object'){
 							newRow = {};
 
 							_.forEach(field.relationshipDescriptor, function(column){
 								newRow[column.fieldId] = row[column.fieldId];
-								console.log("Column:".concat(column.fieldId));
-								console.log(row[column.fieldId]);
 							});
 							
 							result[field.fieldId].push(newRow);
