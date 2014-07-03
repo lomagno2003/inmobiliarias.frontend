@@ -20,4 +20,4 @@ myApp.config(function(RestangularProvider,constants) {
 	      }
 	      return newResponse;
 	    });
-});;
+});
