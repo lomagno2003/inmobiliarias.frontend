@@ -1,5 +1,7 @@
-define([], function () {
-	tipoGastoDescriptor = {
+define(['services/viewDescriptors/viewDescriptorRepository'], function (viewDescriptorRepository) {
+	console.debug('Defining consorcioDescriptor');
+	var viewDescriptorRepository = (function(viewDescriptorRepository){
+		viewDescriptorRepository['tipoGasto'] = {
 		'idField':'idTipoGasto',
 		'listView' : {
 				title : "Detalles del Tipo de Gasto",
@@ -25,4 +27,9 @@ define([], function () {
 			}]
 		}
 	};
+		
+		return viewDescriptorRepository;
+	}(viewDescriptorRepository));
+	
+	return viewDescriptorRepository;
 });

@@ -1,5 +1,7 @@
-define([], function () {
-	gastoDescriptor = {
+define(['services/viewDescriptors/viewDescriptorRepository'], function (viewDescriptorRepository) {
+	console.debug('Defining gastoDescriptor');
+	var viewDescriptorRepository = (function(viewDescriptorRepository){
+		viewDescriptorRepository['gasto'] = {
 		'idField':'idGasto',
 		'listView' : {
 				title : "Detalles del Gasto",
@@ -77,4 +79,9 @@ define([], function () {
 			}]
 		}
 	};
+		
+		return viewDescriptorRepository;
+	}(viewDescriptorRepository));
+	
+	return viewDescriptorRepository;
 });

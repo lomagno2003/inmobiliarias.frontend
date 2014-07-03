@@ -1,5 +1,7 @@
-define([], function () {
-	propietarioDescriptor = {
+define(['services/viewDescriptors/viewDescriptorRepository'], function (viewDescriptorRepository) {
+	console.debug('Defining consorcioDescriptor');
+	var viewDescriptorRepository = (function(viewDescriptorRepository){
+		viewDescriptorRepository['propietario'] = {
 		'idField':'idPersona',
 		'listView' : {
 				title : "Detalles del propietario",
@@ -48,4 +50,9 @@ define([], function () {
 			} ]
 		}
 	};
+		
+		return viewDescriptorRepository;
+	}(viewDescriptorRepository));
+	
+	return viewDescriptorRepository;
 });
