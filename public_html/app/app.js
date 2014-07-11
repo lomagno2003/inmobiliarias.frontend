@@ -8,33 +8,33 @@ define([ 'angularAMD', 'angular-route' , 'restangular'], function(angularAMD) {
 		$routeProvider
 
 		.when('/error/:errorId', angularAMD.route({
-			templateUrl : 'app/views/error/',
+			templateUrl : 'app/errorManagment/views/error/',
 			controller : 'errorViewController',
-			controllerUrl : 'controllers/errorViewController'
+			controllerUrl : 'errorManagment/controllers/errorViewController'
 		}))
 
 		.when('/', angularAMD.route({
-			templateUrl : 'app/views/tiles/home.html',
+			templateUrl : 'app/common/views/tiles/home.html',
 			controller : 'mainController',
 			controllerUrl : 'controllers/mainController'
 		}))
 
 		.when('/:repository/:id/', angularAMD.route({
-			templateUrl : 'app/views/abm/detail/',
+			templateUrl : 'app/dynamicABM/views/detail/',
 			controller : 'detailViewController',
-			controllerUrl : 'controllers/detailViewController'
+			controllerUrl : 'dynamicABM/controllers/detailViewController'
 		}))
 
 		.when('/:repository', angularAMD.route({
-			templateUrl : 'app/views/abm/list/',
+			templateUrl : 'app/dynamicABM/views/list/',
 			controller : 'listViewController',
-			controllerUrl : 'controllers/listViewController'
+			controllerUrl : 'dynamicABM/controllers/listViewController'
 		}))
 
 		.when('/:repository/:id/:repositoryItem', angularAMD.route({
-			templateUrl : 'app/views/abm/list/',
+			templateUrl : 'app/dynamicABM/views/list/',
 			controller : 'selectItemViewController',
-			controllerUrl : 'controllers/selectItemViewController'
+			controllerUrl : 'dynamicABM/controllers/selectItemViewController'
 		}));
 	});
 	

@@ -1,6 +1,6 @@
 define(['app',
-        'services/viewDescriptorService',
-        'services/jasperConnectorService'
+        'dynamicABM/services/viewDescriptorService',
+        'common/services/jasperConnectorService'
         ], function (app) {
 	app.register.controller('detailViewController', [ '$scope', '$rootScope', '$routeParams', '$location',
 		'viewDescriptorService','Restangular', 'jasperConnectorService',

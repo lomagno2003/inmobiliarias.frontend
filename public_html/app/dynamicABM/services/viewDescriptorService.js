@@ -1,10 +1,10 @@
 define(['app','require',
-        'services/viewDescriptors/viewDescriptorRepository',
-        'services/viewDescriptors/consorcioDescriptor',
-        'services/viewDescriptors/gastoDescriptor',
-        'services/viewDescriptors/propiedadDescriptor',
-        'services/viewDescriptors/propietarioDescriptor',
-        'services/viewDescriptors/tipoGastoDescriptor'
+        'dynamicABM/services/viewDescriptors/viewDescriptorRepository',
+        'dynamicABM/services/viewDescriptors/consorcioDescriptor',
+        'dynamicABM/services/viewDescriptors/gastoDescriptor',
+        'dynamicABM/services/viewDescriptors/propiedadDescriptor',
+        'dynamicABM/services/viewDescriptors/propietarioDescriptor',
+        'dynamicABM/services/viewDescriptors/tipoGastoDescriptor'
         
         ],function(app,require,viewDescriptorRepository){
 	console.info('Configuring viewDescriptorService');

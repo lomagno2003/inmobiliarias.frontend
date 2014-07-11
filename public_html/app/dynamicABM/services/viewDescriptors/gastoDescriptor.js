@@ -1,4 +1,4 @@
-define(['services/viewDescriptors/viewDescriptorRepository'], function (viewDescriptorRepository) {
+define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], function (viewDescriptorRepository) {
 	console.debug('Defining gastoDescriptor');
 	var viewDescriptorRepository = (function(viewDescriptorRepository){
 		viewDescriptorRepository['gasto'] = {

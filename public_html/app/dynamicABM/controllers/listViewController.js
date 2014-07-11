@@ -1,4 +1,4 @@
-define(['app','services/viewDescriptorService'], function (app) {
+define(['app','dynamicABM/services/viewDescriptorService'], function (app) {
 	app.register.controller('listViewController', [ '$scope', '$routeParams', '$location',
 		'viewDescriptorService','Restangular', 
 		function($scope, $routeParams, $location, viewDescriptorService, Restangular) {
