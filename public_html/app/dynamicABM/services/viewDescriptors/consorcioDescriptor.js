@@ -27,7 +27,7 @@ define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], functio
 						'fieldType' : 'text'
 					} ]
 				}, {
-					'fieldId' : 'gasto',
+					'fieldId' : 'gastoOrdinario',
 					'fieldName' : 'Gastos',
 					'fieldType' : 'oneToMany',
 					'relationshipDescriptor' : [ {

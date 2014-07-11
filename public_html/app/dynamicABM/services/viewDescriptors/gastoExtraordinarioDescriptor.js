@@ -1,7 +1,7 @@
 define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], function (viewDescriptorRepository) {
-	console.debug('Defining gastoDescriptor');
+	console.debug('Defining gastoOrdinarioDescriptor');
 	var viewDescriptorRepository = (function(viewDescriptorRepository){
-		viewDescriptorRepository['gasto'] = {
+		viewDescriptorRepository['gastoExtraordinario'] = {
 		'idField':'idGasto',
 		'listView' : {
 				title : "Detalles del Gasto",
@@ -14,18 +14,8 @@ define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], functio
 					'columnName' : 'Comprobante',
 					'columnType' : 'text'
 				}, {
-					'columnId' : 'consorcio',
-					'columnName' : 'Consorcio',
-					'columnType' : 'manyToOne',
-					'relationshipDescriptor' :  
-				    {
-						'fieldId' : 'nombre',
-						'fieldName' : 'Nombre',
-						'fieldType' : 'text'	
-				    }
-				}, {
-					'columnId' : 'propiedad',
-					'columnName' : 'Propiedad',
+					'columnId' : 'unidadFuncional',
+					'columnName' : 'Unidad Funcional',
 					'columnType' : 'manyToOne',
 					'relationshipDescriptor' :  
 				    {
@@ -37,8 +27,8 @@ define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], functio
 		}, 'detailView' : {
 			title : "Detalles del gasto",
 			fields : [ {
-				'fieldId' : 'tipoGasto',
-				'fieldName' : 'Tipo de gasto',
+				'fieldId' : 'concepto',
+				'fieldName' : 'Concepto del gasto',
 				'fieldType' : 'manyToOne',
 				'relationshipDescriptor' : {
 					'columnId' : 'descripcion',
@@ -57,18 +47,8 @@ define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], functio
 				'fieldName' : 'Comentarios',
 				'fieldType' : 'text'
 			}, {
-				'fieldId' : 'consorcio',
-				'fieldName' : 'Consorcio',
-				'fieldType' : 'manyToOne',
-				'relationshipDescriptor' :  
-			    {
-					'fieldId' : 'nombre',
-					'fieldName' : 'Nombre',
-					'fieldType' : 'text'	
-			    }
-			}, {
-				'fieldId' : 'propiedad',
-				'fieldName' : 'Propiedad',
+				'fieldId' : 'unidadFuncional',
+				'fieldName' : 'Unidad Funcional',
 				'fieldType' : 'manyToOne',
 				'relationshipDescriptor' :  
 			    {

@@ -1,17 +1,17 @@
 define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], function (viewDescriptorRepository) {
-	console.debug('Defining consorcioDescriptor');
+	console.debug('Defining unidadFuncionalDescriptor');
 	var viewDescriptorRepository = (function(viewDescriptorRepository){
-		viewDescriptorRepository['propiedad'] = {
-		'idField':'idPropiedad',
+		viewDescriptorRepository['unidadFuncional'] = {
+		'idField':'idUnidadFuncional',
 		'reportName':'detailPropiedad',
 		'listView' : {
-				title : "Propiedades",
+				title : "Unidades Funcionales",
 				columns : [ {
 					'columnId' : 'nombre',
 					'columnName' : 'Nombre'
 				} ]	
 		}, 'detailView' : {
-			title : "Detalles de la propiedad",
+			title : "Detalles de la unidad funcional",
 			fields : [ {
 				'fieldId' : 'nombre',
 				'fieldName' : 'Nombre',
@@ -45,7 +45,7 @@ define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], functio
 						'fieldType' : 'text'	
 				    }
 			}, {
-				'fieldId' : 'gasto',
+				'fieldId' : 'gastoOrdinario',
 				'fieldName' : 'Gastos',
 				'fieldType' : 'oneToMany',
 				'relationshipDescriptor' : [ {

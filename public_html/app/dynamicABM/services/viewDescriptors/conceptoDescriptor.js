@@ -1,10 +1,10 @@
 define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], function (viewDescriptorRepository) {
 	console.debug('Defining consorcioDescriptor');
 	var viewDescriptorRepository = (function(viewDescriptorRepository){
-		viewDescriptorRepository['tipoGasto'] = {
-		'idField':'idTipoGasto',
+		viewDescriptorRepository['concepto'] = {
+		'idField':'idConcepto',
 		'listView' : {
-				title : "Detalles del Tipo de Gasto",
+				title : "Detalles del Concepto",
 				columns : [ {
 					'columnId' : 'valorDefecto',
 					'columnName' : 'Valor por defecto',
@@ -15,7 +15,7 @@ define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], functio
 					'columnType' : 'text'
 				}]
 		}, 'detailView' : {
-			title : "Detalles del gasto",
+			title : "Detalles del Concepto",
 			fields : [ {
 				'fieldId' : 'valorDefecto',
 				'fieldName' : 'Valor por defecto',

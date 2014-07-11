@@ -1,10 +1,11 @@
 define(['app','require',
         'dynamicABM/services/viewDescriptors/viewDescriptorRepository',
         'dynamicABM/services/viewDescriptors/consorcioDescriptor',
-        'dynamicABM/services/viewDescriptors/gastoDescriptor',
-        'dynamicABM/services/viewDescriptors/propiedadDescriptor',
+        'dynamicABM/services/viewDescriptors/gastoOrdinarioDescriptor',
+        'dynamicABM/services/viewDescriptors/gastoExtraordinarioDescriptor',
+        'dynamicABM/services/viewDescriptors/unidadFuncionalDescriptor',
         'dynamicABM/services/viewDescriptors/propietarioDescriptor',
-        'dynamicABM/services/viewDescriptors/tipoGastoDescriptor'
+        'dynamicABM/services/viewDescriptors/conceptoDescriptor'
         
         ],function(app,require,viewDescriptorRepository){
 	console.info('Configuring viewDescriptorService');
