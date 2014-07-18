@@ -18,8 +18,8 @@ define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], functio
 					'fieldName' : 'Nombre',
 					'fieldType' : 'text'
 				}, {
-					'fieldId' : 'propiedad',
-					'fieldName' : 'Propiedades',
+					'fieldId' : 'unidadFuncional',
+					'fieldName' : 'Unidades Funcionales',
 					'fieldType' : 'oneToMany',
 					'relationshipDescriptor' : [ {
 						'fieldId' : 'nombre',

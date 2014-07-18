@@ -12,12 +12,11 @@ define(['app',
 			$scope.loadData = function(){
 				Restangular.one($routeParams.repository, $routeParams.id).get().then(function(element){
 					$scope.element = element;
-					$scope.elementTables = {};
 					
 					for(var property in element._links){
 						if(element._links.hasOwnProperty(property)){
 							if(property!='self'){
-								$scope.elementTables[property]=Restangular.allUrl(property,$scope.element._links[property].href).getList();
+								$scope.element[property]=Restangular.allUrl(property,$scope.element._links[property].href).getList();
 							}
 						}
 					}
@@ -107,7 +106,7 @@ define(['app',
 					switch(field.fieldType){
 					case "oneToMany":
 						result[field.fieldId] = [];
-						_.forEach($scope.elementTables[field.fieldId].$object,function(row){
+						_.forEach($scope.element[field.fieldId].$object,function(row){
 							if(typeof row === 'object'){
 								newRow = {};
 	
@@ -120,7 +119,7 @@ define(['app',
 						});
 						break;
 					case "manyToOne":
-						result[field.fieldId] = $scope.elementTables[field.fieldId].$object[0][field.relationshipDescriptor.fieldId];
+						result[field.fieldId] = $scope.element[field.fieldId].$object[0][field.relationshipDescriptor.fieldId];
 						break;
 					default:
 						result[field.fieldId] = $scope.element[field.fieldId];
