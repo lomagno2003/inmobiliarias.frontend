@@ -21,10 +21,6 @@ define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], functio
 				'fieldName' : 'Direccion',
 				'fieldType' : 'text'
 			}, {
-				'fieldId' : 'porcentajeGastosComunes',
-				'fieldName' : 'Porcentaje de gastos comunes',
-				'fieldType' : 'number'
-			}, {
 				'fieldId' : 'consorcio',
 				'fieldName' : 'Consorcio',
 				'fieldType' : 'manyToOne',
@@ -42,8 +38,29 @@ define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], functio
 				    {
 						'fieldId' : 'nombre',
 						'fieldName' : 'Nombre',
-						'fieldType' : 'text'	
+						'fieldType' : 'text'
 				    }
+			}, {
+				'fieldId' : 'balance',
+				'fieldName' : 'Balance',
+				'fieldType' : 'number',
+				'fieldDisabled':'true'
+			}, {
+				'fieldId' : 'cambioPorcentajeGastos',
+				'fieldName' : 'Cambios en los porcentajes de gastos comunes',
+				'fieldType' : 'oneToMany',
+				'fieldDisabled':'true',
+				'relationshipDescriptor' :  [
+					{
+						'fieldId' : 'fecha',
+						'fieldName' : 'Fecha del cambio',
+						'fieldType' : 'text'	
+					},
+				    {
+						'fieldId' : 'porcentajeGasto',
+						'fieldName' : 'Porcentaje de Gastos',
+						'fieldType' : 'text'	
+				    }]
 			}, {
 				'fieldId' : 'gastoOrdinario',
 				'fieldName' : 'Gastos',

@@ -16,7 +16,9 @@ define(['app',
 					for(var property in element._links){
 						if(element._links.hasOwnProperty(property)){
 							if(property!='self'){
-								$scope.element[property]=Restangular.allUrl(property,$scope.element._links[property].href).getList();
+								$scope.element[property]=Restangular.allUrl(property,$scope.element._links[property].href).getList().then(function(element){
+									$scope.element[element.route]=element;
+								});
 							}
 						}
 					}
@@ -31,9 +33,7 @@ define(['app',
 			
 			$scope.validRows = function(columns,rows){
 				var result = [];
-				if(rows){
-					rows = rows.$object;
-	
+				if(rows){	
 					_.forEach(rows, function(row){
 						include = true;
 						_.forEach(columns, function(column){
@@ -106,7 +106,7 @@ define(['app',
 					switch(field.fieldType){
 					case "oneToMany":
 						result[field.fieldId] = [];
-						_.forEach($scope.element[field.fieldId].$object,function(row){
+						_.forEach($scope.element[field.fieldId],function(row){
 							if(typeof row === 'object'){
 								newRow = {};
 	
@@ -119,7 +119,7 @@ define(['app',
 						});
 						break;
 					case "manyToOne":
-						result[field.fieldId] = $scope.element[field.fieldId].$object[0][field.relationshipDescriptor.fieldId];
+						result[field.fieldId] = $scope.element[field.fieldId][0][field.relationshipDescriptor.fieldId];
 						break;
 					default:
 						result[field.fieldId] = $scope.element[field.fieldId];

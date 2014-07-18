@@ -48,13 +48,13 @@
 							<div class="btn-group btn-group-justified">
 								<div class="btn-group">
 									<button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="{{field.fieldId}}">
-										{{element[field.fieldId].$object[0][field.relationshipDescriptor.fieldId]}}
+										{{element[field.fieldId][0][field.relationshipDescriptor.fieldId]}}
 										<span class="caret"></span> <span class="sr-only">Toggle
 											Dropdown</span>
 									</button>
 									<ul class="dropdown-menu" role="menu">
 										<li ng-if="field.fieldDisabled != 'true'"><a ng-click="changeReference(field.fieldId)">Cambiar</a></li>
-										<li ng-if="element[field.fieldId].$object[0]"><a ng-click="goTo(field.fieldId.concat('/').concat(element[field.fieldId].$object[0]['id']))">Ir</a></li>
+										<li ng-if="element[field.fieldId][0]"><a ng-click="goTo(field.fieldId.concat('/').concat(element[field.fieldId][0]['id']))">Ir</a></li>
 									</ul>
 								</div>
 							</div>
