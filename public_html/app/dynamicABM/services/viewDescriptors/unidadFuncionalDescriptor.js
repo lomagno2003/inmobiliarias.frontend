@@ -1,5 +1,4 @@
 define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], function (viewDescriptorRepository) {
-	console.debug('Defining unidadFuncionalDescriptor');
 	var viewDescriptorRepository = (function(viewDescriptorRepository){
 		viewDescriptorRepository['unidadFuncional'] = {
 		'idField':'idUnidadFuncional',

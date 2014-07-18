@@ -1,5 +1,4 @@
 define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], function (viewDescriptorRepository) {
-	console.debug('Defining gastoOrdinarioDescriptor');
 	var viewDescriptorRepository = (function(viewDescriptorRepository){
 		viewDescriptorRepository['gastoExtraordinario'] = {
 		'idField':'idGasto',

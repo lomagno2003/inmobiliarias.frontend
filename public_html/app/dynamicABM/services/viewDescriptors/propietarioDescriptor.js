@@ -1,5 +1,4 @@
 define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], function (viewDescriptorRepository) {
-	console.debug('Defining consorcioDescriptor');
 	var viewDescriptorRepository = (function(viewDescriptorRepository){
 		viewDescriptorRepository['propietario'] = {
 		'idField':'idPersona',

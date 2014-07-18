@@ -8,8 +8,6 @@ define(['app','require',
         'dynamicABM/services/viewDescriptors/conceptoDescriptor'
         
         ],function(app,require,viewDescriptorRepository){
-	console.info('Configuring viewDescriptorService');
-
 	app.register.service('viewDescriptorService',function($routeParams) {
 	    this.getDescriptor = function(name){
 	    	return viewDescriptorRepository[name];

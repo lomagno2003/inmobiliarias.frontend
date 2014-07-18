@@ -1,9 +1,7 @@
 define([ 'angularAMD', 'angular-route' , 'restangular'], function(angularAMD) {
-	console.info("Configuring app");
 	var app = angular.module('webapp',
 			[ 'ngRoute', 'restangular' ]);
 
-	console.info("Configuring route provider");
 	app.config(function($routeProvider) {
 		$routeProvider
 
@@ -38,13 +36,11 @@ define([ 'angularAMD', 'angular-route' , 'restangular'], function(angularAMD) {
 		}));
 	});
 	
-	console.info("Configuring Constants");
 	app.constant('constants',{
 		restServerURI:'http://localhost:8082/rest',
 		jasperServerURI:'http://localhost:8081/jasper/report/'
 	});
 	
-	console.info("Configuring Restangular");
 	app.config(function(RestangularProvider,constants) {
 		RestangularProvider.setBaseUrl(
 				  constants.restServerURI);
@@ -67,7 +63,6 @@ define([ 'angularAMD', 'angular-route' , 'restangular'], function(angularAMD) {
 		    });
 	});
 	
-	console.info("Bootstrapping app");
 	angularAMD.bootstrap(app);
 	return app;
 });

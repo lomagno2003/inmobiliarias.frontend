@@ -96,9 +96,7 @@ define(['app',
 				});
 			};
 			
-			$scope.generateReport = function(){
-				console.log("Getting JSONObject");
-				
+			$scope.generateReport = function(){				
 				var result = {};
 				
 				_.forEach($scope.descriptor.detailView.fields, function(field){
