@@ -147,9 +147,18 @@ define(['app',
 				jasperConnectorService.generateReport("detail".concat($routeParams.repository.substring(0,1).toUpperCase()).concat($routeParams.repository.substring(1)),result);
 			};
 			
-			$scope.formatColumn = function(column){
-				if(column){
-					return column;
+			$scope.formatColumn = function(column,row){
+				if(row[column.fieldId]){
+					if(column.fieldType == 'date'){
+						dateObject = new Date(row[column.fieldId]);
+						day = dateObject.getDate().toString();
+						month = dateObject.getMonth()+1;
+						year = dateObject.getFullYear();
+						dateFormat = day+'/'+month+'/'+year;
+						return dateFormat;
+					} else {
+						return row[column.fieldId];
+					}
 				} else {
 					return "Desconocido";
 				}

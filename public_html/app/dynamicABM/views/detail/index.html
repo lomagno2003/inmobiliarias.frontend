@@ -33,7 +33,7 @@
 								<tr
 									ng-repeat="row in validRows(field.relationshipDescriptor, element[field.fieldId])"
 									ng-click="tableClick(field,row)">
-									<td ng-repeat="column in field.relationshipDescriptor">{{formatColumn(row[column.fieldId])}}</td>
+									<td ng-repeat="column in field.relationshipDescriptor">{{formatColumn(column,row)}}</td>
 								</tr>
 							</tbody>
 						</table>

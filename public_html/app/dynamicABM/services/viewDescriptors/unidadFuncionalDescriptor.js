@@ -54,7 +54,7 @@ define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], functio
 					{
 						'fieldId' : 'fecha',
 						'fieldName' : 'Fecha del cambio',
-						'fieldType' : 'text'	
+						'fieldType' : 'date'	
 					},
 				    {
 						'fieldId' : 'porcentajeGasto',
