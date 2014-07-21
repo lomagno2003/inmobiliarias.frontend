@@ -5,17 +5,17 @@ define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], functio
 		'listView' : {
 				title : "Detalles del Gasto",
 				columns : [ {
-					'columnId' : 'monto',
-					'columnName' : 'Monto',
-					'columnType' : 'text'
+					'fieldId' : 'monto',
+					'fieldName' : 'Monto',
+					'fieldType' : 'text'
 				}, {
-					'columnId' : 'comprobante',
-					'columnName' : 'Comprobante',
-					'columnType' : 'text'
+					'fieldId' : 'comprobante',
+					'fieldName' : 'Comprobante',
+					'fieldType' : 'text'
 				}, {
-					'columnId' : 'unidadFuncional',
-					'columnName' : 'Unidad Funcional',
-					'columnType' : 'manyToOne',
+					'fieldId' : 'unidadFuncional',
+					'fieldName' : 'Unidad Funcional',
+					'fieldType' : 'manyToOne',
 					'relationshipDescriptor' :  
 				    {
 						'fieldId' : 'nombre',

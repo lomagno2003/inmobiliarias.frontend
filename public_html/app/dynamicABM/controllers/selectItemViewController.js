@@ -26,18 +26,35 @@ define(['app'], function (app) {
 				});
 			});
 	
-			});
+		});
 			
-			$scope.selectItem = function(item){
-				Restangular.one($routeParams.repository, $routeParams.id).get().then(function(element){
-					element[$routeParams.repositoryItem] = item.href;
-					element.put().then(function(result){
-						bootbox.alert("Cambiado");
-						path = $routeParams.repository.concat('/').concat($routeParams.id);
-						$location.path(path);
-					});
+		$scope.selectItem = function(item){
+			Restangular.one($routeParams.repository, $routeParams.id).get().then(function(element){
+				element[$routeParams.repositoryItem] = item.href;
+				element.put().then(function(result){
+					bootbox.alert("Cambiado");
+					path = $routeParams.repository.concat('/').concat($routeParams.id);
+					$location.path(path);
 				});
-			};
+			});
+		};
+			
+		$scope.formatColumn = function(column,row){
+			if(row[column.fieldId]){
+				if(column.fieldType == 'date'){
+					dateObject = new Date(row[column.fieldId]);
+					day = dateObject.getDate().toString();
+					month = dateObject.getMonth()+1;
+					year = dateObject.getFullYear();
+					dateFormat = day+'/'+month+'/'+year;
+					return dateFormat;
+				} else {
+					return row[column.fieldId];
+				}
+			} else {
+				return "Desconocido";
+			}
+		};
 		}
 	]);
 });

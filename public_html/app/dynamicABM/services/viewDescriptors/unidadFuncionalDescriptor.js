@@ -6,8 +6,9 @@ define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], functio
 		'listView' : {
 				title : "Unidades Funcionales",
 				columns : [ {
-					'columnId' : 'nombre',
-					'columnName' : 'Nombre'
+					'fieldId' : 'nombre',
+					'fieldName' : 'Nombre',
+					'fieldType' : 'text'
 				} ]	
 		}, 'detailView' : {
 			title : "Detalles de la unidad funcional",

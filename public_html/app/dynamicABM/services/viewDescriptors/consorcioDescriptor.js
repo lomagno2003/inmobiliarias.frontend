@@ -6,8 +6,9 @@ define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], functio
 			'listView':{
 					title : "Consorcios",
 					columns : [ {
-						'columnId' : 'nombre',
-						'columnName' : 'Nombre'
+						'fieldId' : 'nombre',
+						'fieldName' : 'Nombre',
+						'fieldType' : 'text'
 					} ]	
 			}, 
 			'detailView':{

@@ -1,5 +1,8 @@
 define(['app',
         'dynamicABM/services/viewDescriptorService',
+        'dynamicABM/directives/basicField',
+        'dynamicABM/directives/oneToManyField',
+        'dynamicABM/directives/manyToOneField',
         'common/services/jasperConnectorService'
         ], function (app) {
 	app.register.controller('detailViewController', [ '$scope', '$rootScope', '$routeParams', '$location',
@@ -31,27 +34,6 @@ define(['app',
 				});
 			};
 			
-			$scope.validRows = function(columns,rows){
-				var result = [];
-				if(rows){	
-					_.forEach(rows, function(row){
-						include = true;
-						_.forEach(columns, function(column){
-							if(!(row.hasOwnProperty(column.fieldId))){
-								include = false;
-							}
-						});
-						
-						if(include){
-							result.push(row);
-						}
-					});
-				}
-				
-				return result;
-			};
-			
-			
 			$scope.goBack = function(){
 				$location.path($routeParams.repository);
 			};
@@ -74,22 +56,7 @@ define(['app',
 					}
 				});
 			};
-			
-			$scope.changeReference = function(fieldId){
-				path = $routeParams.repository.concat('/').concat($routeParams.id).concat('/').concat(fieldId);
-				$scope.goTo(path);
-			};
-			
-			$scope.goTo = function(path){
-				$location.path(path);
-			};
-			
-			$scope.tableClick = function(field,row){
-				if(field.fieldClickeable){
-					$location.path(field.fieldId.concat('/').concat(row['id']));
-				}
-			};
-			
+
 			$scope.create = function(repository){
 				newElement = {};
 	
@@ -147,22 +114,7 @@ define(['app',
 				jasperConnectorService.generateReport("detail".concat($routeParams.repository.substring(0,1).toUpperCase()).concat($routeParams.repository.substring(1)),result);
 			};
 			
-			$scope.formatColumn = function(column,row){
-				if(row[column.fieldId]){
-					if(column.fieldType == 'date'){
-						dateObject = new Date(row[column.fieldId]);
-						day = dateObject.getDate().toString();
-						month = dateObject.getMonth()+1;
-						year = dateObject.getFullYear();
-						dateFormat = day+'/'+month+'/'+year;
-						return dateFormat;
-					} else {
-						return row[column.fieldId];
-					}
-				} else {
-					return "Desconocido";
-				}
-			};
+	
 			
 			/**
 			 * Initialization

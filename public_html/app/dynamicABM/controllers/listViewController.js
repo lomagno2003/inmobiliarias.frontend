@@ -45,8 +45,6 @@ define(['app','dynamicABM/services/viewDescriptorService'], function (app) {
 				
 				_.forEach($scope.descriptor.detailView.fields, function(field){
 					if(field.fieldDefaultValue){
-						console.log(field.fieldId);
-						console.log(field.fieldDefaultValue);
 						newElement[field.fieldId] = field.fieldDefaultValue;
 					}
 				});
@@ -56,9 +54,18 @@ define(['app','dynamicABM/services/viewDescriptorService'], function (app) {
 				});
 			};
 			
-			$scope.formatColumn = function(column){
-				if(column){
-					return column;
+			$scope.formatColumn = function(column,row){
+				if(row[column.fieldId]){
+					if(column.fieldType == 'date'){
+						dateObject = new Date(row[column.fieldId]);
+						day = dateObject.getDate().toString();
+						month = dateObject.getMonth()+1;
+						year = dateObject.getFullYear();
+						dateFormat = day+'/'+month+'/'+year;
+						return dateFormat;
+					} else {
+						return row[column.fieldId];
+					}
 				} else {
 					return "Desconocido";
 				}
