@@ -43,6 +43,14 @@ define(['app','dynamicABM/services/viewDescriptorService'], function (app) {
 			$scope.create = function(){
 				newElement = {};
 				
+				_.forEach($scope.descriptor.detailView.fields, function(field){
+					if(field.fieldDefaultValue){
+						console.log(field.fieldId);
+						console.log(field.fieldDefaultValue);
+						newElement[field.fieldId] = field.fieldDefaultValue;
+					}
+				});
+				
 				raNewElement = Restangular.all($routeParams.repository.concat('/')).post(newElement).then(function(data){				
 					$scope.updateList();
 				});

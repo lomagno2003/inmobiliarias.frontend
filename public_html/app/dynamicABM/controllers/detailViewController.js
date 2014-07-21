@@ -97,6 +97,16 @@ define(['app',
 				
 				newElement[$routeParams.repository] = selfPath;
 				
+				elementDescriptor = viewDescriptorService.getDescriptor(repository);
+								
+				_.forEach(elementDescriptor.detailView.fields, function(field){
+					if(field.fieldDefaultValue){
+						console.log(field.fieldId);
+						console.log(field.fieldDefaultValue);
+						newElement[field.fieldId] = field.fieldDefaultValue;
+					}
+				});
+				
 				raNewElement = Restangular.all(repository.concat('/')).post(newElement).then(function(postedElement){
 					$scope.loadData();
 				});
