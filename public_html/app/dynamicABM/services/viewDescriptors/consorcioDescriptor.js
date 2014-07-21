@@ -20,6 +20,7 @@ define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], functio
 					'fieldId' : 'unidadFuncional',
 					'fieldName' : 'Unidades Funcionales',
 					'fieldType' : 'oneToMany',
+					'fieldClickeable':'true',
 					'relationshipDescriptor' : [ {
 						'fieldId' : 'nombre',
 						'fieldName' : 'Nombre',

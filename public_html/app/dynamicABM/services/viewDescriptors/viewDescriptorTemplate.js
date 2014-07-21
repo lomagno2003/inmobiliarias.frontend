@@ -15,7 +15,8 @@ define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], functio
 				'fieldId' : 'fieldId1',
 				'fieldName' : 'fieldName1',
 				'fieldType' : 'fieldType1',
-				'fieldDisabled':'true'										//This make the field as disabled
+				'fieldDisabled':'true',										//This make the field as disabled
+				'fieldClickeable':'true'
 			}, {
 				'fieldId' : 'fieldId2',
 				'fieldName' : 'fieldName2',

@@ -77,11 +77,17 @@ define(['app',
 			
 			$scope.changeReference = function(fieldId){
 				path = $routeParams.repository.concat('/').concat($routeParams.id).concat('/').concat(fieldId);
-				$location.path(path);
+				$scope.goTo(path);
 			};
 			
 			$scope.goTo = function(path){
 				$location.path(path);
+			};
+			
+			$scope.tableClick = function(field,row){
+				if(field.fieldClickeable){
+					$location.path(field.fieldId.concat('/').concat(row['id']));
+				}
 			};
 			
 			$scope.create = function(repository){
