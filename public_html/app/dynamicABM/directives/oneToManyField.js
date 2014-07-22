@@ -11,31 +11,34 @@ define(['app'],function(app){
 			templateUrl : 'app/dynamicABM/directives/templates/oneToManyField.html',
 			link: function($scope, element, attrs) {
 			     $scope.validRows = function(){
-			    	columns = $scope.field.relationshipDescriptor;
-			    	var rows = null;
-			    	
-			    	if(!$scope.field.fieldInRequest){
-			    		rows = $scope.elementRelationships[$scope.field.fieldId];
-			    	} else {
-			    		rows = $scope.element[$scope.field.fieldId];
-			    	}
-			    	
-			 		var result = [];
-			 		
-					if(rows){	
-						_.forEach(rows, function(row){
-							include = true;
-							_.forEach(columns, function(column){
-								if(!(row.hasOwnProperty(column.fieldId))){
-									include = false;
+			    	 var result = [];
+			    	 if($scope.element&&$scope.elementRelationships){
+				    	columns = $scope.field.relationshipDescriptor;
+				    	var rows = null;
+				    	
+				    	if(!$scope.field.fieldInRequest){
+				    		rows = $scope.elementRelationships[$scope.field.fieldId];
+				    	} else {
+				    		rows = $scope.element[$scope.field.fieldId];
+				    	}
+				    	
+				 		
+				 		
+						if(rows){	
+							_.forEach(rows, function(row){
+								include = true;
+								_.forEach(columns, function(column){
+									if(!(row.hasOwnProperty(column.fieldId))){
+										include = false;
+									}
+								});
+								
+								if(include){
+									result.push(row);
 								}
 							});
-							
-							if(include){
-								result.push(row);
-							}
-						});
-					}
+						}
+			    	 }
 					
 					return result;
 				}
