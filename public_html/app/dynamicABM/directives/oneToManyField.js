@@ -41,19 +41,21 @@ define(['app'],function(app){
 				}
 			     
 				$scope.formatColumn = function(column,row){
-					if(row[column.fieldId]){
-						if(column.fieldType == 'date'){
-							dateObject = new Date(row[column.fieldId]);
-							day = dateObject.getDate().toString();
-							month = dateObject.getMonth()+1;
-							year = dateObject.getFullYear();
-							dateFormat = day+'/'+month+'/'+year;
-							return dateFormat;
+					if(row){
+						if(row[column.fieldId]){
+							if(column.fieldType == 'date'){
+								dateObject = new Date(row[column.fieldId]);
+								day = dateObject.getDate().toString();
+								month = dateObject.getMonth()+1;
+								year = dateObject.getFullYear();
+								dateFormat = day+'/'+month+'/'+year;
+								return dateFormat;
+							} else {
+								return row[column.fieldId];
+							}
 						} else {
-							return row[column.fieldId];
+							return "Desconocido";
 						}
-					} else {
-						return "Desconocido";
 					}
 				};
 				
