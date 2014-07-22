@@ -3,23 +3,7 @@
 	<div class="col-md-6 column">
 		<h3>{{descriptor.detailView.title}}</h3>
 		<form class="form-horizontal" role="form">
-			<div class="form-group"
-				ng-repeat="field in descriptor.detailView.fields">
-				<div ng-switch on="field.fieldType">
-					<div ng-switch-default>
-						<basic-field field="field" element="element"></basic-field>
-					</div>
-
-					<div ng-switch-when='oneToMany'>
-						<one-to-many-field field="field" element="element"></one-to-many-field>
-					</div>
-
-					<div ng-switch-when='manyToOne'>
-						<many-to-one-field field="field" element="element" selectAction='selectAction'></many-to-one-field>
-					</div>
-				</div>
-			</div>
-
+			<resource-form-mapper descriptor="descriptor" element="element" element-relationships="elementRelationships"></resource-form-mapper>
 
 			<div class="btn-group pull-right">
 				<button type="button" class="btn btn-default" ng-click="goBack()">Volver</button>

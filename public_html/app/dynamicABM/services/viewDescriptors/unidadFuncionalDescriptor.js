@@ -75,6 +75,19 @@ define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], functio
 					'fieldName' : 'Comentarios',
 					'fieldType' : 'text'
 				} ]
+			}, {
+				'fieldId' : 'pago',
+				'fieldName' : 'Pagos',
+				'fieldType' : 'oneToMany',
+				'relationshipDescriptor' : [ {
+					'fieldId' : 'monto',
+					'fieldName' : 'Monto',
+					'fieldType' : 'text'
+				}, {
+					'fieldId' : 'comentario',
+					'fieldName' : 'Comentarios',
+					'fieldType' : 'text'
+				} ]
 			}]
 		}
 	};

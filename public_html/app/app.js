@@ -51,10 +51,17 @@ define([ 'angularAMD', 'angular-route' , 'restangular'], function(angularAMD) {
 		    	if(response.hasOwnProperty('_embedded')){
 			        newResponse = response._embedded[route];
 		    	} else {
-		    		if(response)
+		    		var isEmpty = true;
+		    		for(var prop in response){
+		    			if(response.hasOwnProperty(prop)){
+		    				isEmpty = false;
+		    			}
+		    		}
+		    		if(response&&!isEmpty){
 		    			newResponse = [response];
-		    		else
+		    		}	else {
 		    			newResponse = [];
+		    		}
 		    	}
 		      } else {
 		        newResponse = response;

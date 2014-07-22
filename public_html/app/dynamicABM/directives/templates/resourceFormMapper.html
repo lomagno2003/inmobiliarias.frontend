@@ -1,0 +1,17 @@
+<div class="form-group"
+	ng-repeat="field in descriptor.detailView.fields">
+	<div ng-switch on="field.fieldType">
+		<div ng-switch-default>
+			<basic-field field="field" element="element"></basic-field>
+		</div>
+
+		<div ng-switch-when='oneToMany'>
+			<one-to-many-field field="field" element="element" element-relationships="elementRelationships"></one-to-many-field>
+		</div>
+
+		<div ng-switch-when='manyToOne'>
+			<many-to-one-field field="field" element="element" element-relationships="elementRelationships"
+				selectAction='selectAction'></many-to-one-field>
+		</div>
+	</div>
+</div>

@@ -1,8 +1,6 @@
 define(['app',
         'dynamicABM/services/viewDescriptorService',
-        'dynamicABM/directives/basicField',
-        'dynamicABM/directives/oneToManyField',
-        'dynamicABM/directives/manyToOneField',
+        'dynamicABM/directives/resourceFormMapper',
         'common/services/jasperConnectorService'
         ], function (app) {
 	app.register.controller('detailViewController', [ '$scope', '$rootScope', '$routeParams', '$location',
@@ -15,12 +13,14 @@ define(['app',
 			$scope.loadData = function(){
 				Restangular.one($routeParams.repository, $routeParams.id).get().then(function(element){
 					$scope.element = element;
+					$scope.elementRelationships = {};
 					
 					for(var property in element._links){
 						if(element._links.hasOwnProperty(property)){
 							if(property!='self'){
-								$scope.element[property]=Restangular.allUrl(property,$scope.element._links[property].href).getList().then(function(element){
-									$scope.element[element.route]=element;
+								$scope.elementRelationships[property]=null;
+								Restangular.allUrl(property,$scope.element._links[property].href).getList().then(function(element){
+									$scope.elementRelationships[element.route]=element;
 								});
 							}
 						}
@@ -39,6 +39,7 @@ define(['app',
 			};
 			
 			$scope.save = function(){
+				console.debug($scope.element);
 				$scope.element.put().then(function(){
 					bootbox.alert("Guardado");
 				});

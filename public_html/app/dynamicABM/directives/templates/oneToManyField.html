@@ -7,13 +7,19 @@
 	</thead>
 	<tbody>
 		<tr
-			ng-repeat="row in validRows(field.relationshipDescriptor, element[field.fieldId])"
+			ng-repeat="row in validRows(field.relationshipDescriptor, elementRelationships[field.fieldId])"
 			ng-click="selectAction(field,row)">
 			<td ng-repeat="column in field.relationshipDescriptor">{{formatColumn(column,row)}}</td>
 		</tr>
 	</tbody>
 </table>
+
+<!------------------------------------------------------------------->
+<!----------------------------- Create Section ---------------------->
+<!------------------------------------------------------------------->
+
 <div ng-if="field.fieldDisabled != 'true'">
 	<button type="button" class="btn btn-default"
 		ng-click="create(field.fieldId)">Crear</button>
 </div>
+
