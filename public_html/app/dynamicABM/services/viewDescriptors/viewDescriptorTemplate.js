@@ -16,11 +16,12 @@ define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], functio
 				'fieldName' : 'fieldName1',
 				'fieldType' : 'fieldType1',
 				'fieldDisabled':'true',										//This make the field as disabled
-				'fieldClickeable':'true'
+				'fieldClickeable':'true',
 			}, {
 				'fieldId' : 'fieldId2',
 				'fieldName' : 'fieldName2',
 				'fieldType' : 'manyToOne',
+				'fieldInRequest':'true',									//This says that the array of values is stored in the element, and not through de URI
 				'fieldDisabled':'true',										//This disallow the Cambiar button
 				'relationshipDescriptor' :  
 				    {

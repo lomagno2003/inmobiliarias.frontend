@@ -7,7 +7,7 @@
 	</thead>
 	<tbody>
 		<tr
-			ng-repeat="row in validRows(field.relationshipDescriptor, elementRelationships[field.fieldId])"
+			ng-repeat="row in validRows()"
 			ng-click="selectAction(field,row)">
 			<td ng-repeat="column in field.relationshipDescriptor">{{formatColumn(column,row)}}</td>
 		</tr>

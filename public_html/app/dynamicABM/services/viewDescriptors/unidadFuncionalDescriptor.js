@@ -51,6 +51,7 @@ define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], functio
 				'fieldName' : 'Cambios en los porcentajes de gastos comunes',
 				'fieldType' : 'oneToMany',
 				'fieldDisabled':'true',
+				'fieldInRequest':'true',
 				'relationshipDescriptor' :  [
 					{
 						'fieldId' : 'fecha',

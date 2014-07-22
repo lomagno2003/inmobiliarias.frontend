@@ -10,8 +10,18 @@ define(['app'],function(app){
 			},
 			templateUrl : 'app/dynamicABM/directives/templates/oneToManyField.html',
 			link: function($scope, element, attrs) {
-			     $scope.validRows = function(columns,rows){
+			     $scope.validRows = function(){
+			    	columns = $scope.field.relationshipDescriptor;
+			    	var rows = null;
+			    	
+			    	if(!$scope.field.fieldInRequest){
+			    		rows = $scope.elementRelationships[$scope.field.fieldId];
+			    	} else {
+			    		rows = $scope.element[$scope.field.fieldId];
+			    	}
+			    	
 			 		var result = [];
+			 		
 					if(rows){	
 						_.forEach(rows, function(row){
 							include = true;
