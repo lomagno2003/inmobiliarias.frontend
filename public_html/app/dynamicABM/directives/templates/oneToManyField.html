@@ -3,11 +3,13 @@
 	<thead>
 		<tr>
 			<th ng-repeat="column in field.relationshipDescriptor">{{column.fieldName}}</th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr ng-repeat="row in validRows()" ng-click="selectAction(field,row)">
 			<td ng-repeat="column in field.relationshipDescriptor">{{formatColumn(column,row)}}</td>
+			<td><span class="glyphicon glyphicon-remove" ng-click="remove(row)"></span></td>
 		</tr>
 	</tbody>
 </table>

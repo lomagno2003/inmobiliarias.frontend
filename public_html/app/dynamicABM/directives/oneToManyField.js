@@ -29,6 +29,18 @@ define(['app',
 					});
 				};
 				
+				$scope.remove = function(element){
+					element.remove().then(function(){
+						bootbox.alert("Eliminado");
+					}, function(error){
+						switch(error.status){
+						case 409:
+							bootbox.alert("No se pudo eliminar debido a problemas de dependencias");
+							break;
+						}
+					});
+				};
+				
 			    $scope.validRows = function(){
 			    	var result = [];
 			    	if($scope.element&&$scope.elementRelationships){

@@ -68,6 +68,10 @@ define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], functio
 				'fieldName' : 'Gastos',
 				'fieldType' : 'oneToMany',
 				'relationshipDescriptor' : [ {
+					'fieldId' : 'fecha',
+					'fieldName' : 'Fecha del pago',
+					'fieldType' : 'date'
+				}, {
 					'fieldId' : 'monto',
 					'fieldName' : 'Monto',
 					'fieldType' : 'text'
@@ -81,6 +85,10 @@ define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], functio
 				'fieldName' : 'Pagos',
 				'fieldType' : 'oneToMany',
 				'relationshipDescriptor' : [ {
+					'fieldId' : 'fecha',
+					'fieldName' : 'Fecha del pago',
+					'fieldType' : 'date'
+				}, {
 					'fieldId' : 'monto',
 					'fieldName' : 'Monto',
 					'fieldType' : 'text'

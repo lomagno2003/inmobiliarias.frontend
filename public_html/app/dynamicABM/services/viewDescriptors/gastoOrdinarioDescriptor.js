@@ -9,6 +9,10 @@ define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], functio
 					'fieldName' : 'Monto',
 					'fieldType' : 'text'
 				}, {
+					'fieldId' : 'fecha',
+					'fieldName' : 'Fecha del pago',
+					'fieldType' : 'date'
+				}, {
 					'fieldId' : 'comprobante',
 					'fieldName' : 'Comprobante',
 					'fieldType' : 'text'
@@ -37,6 +41,10 @@ define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], functio
 				'fieldId' : 'monto',
 				'fieldName' : 'Monto',
 				'fieldType' : 'text'
+			}, {
+				'fieldId' : 'fecha',
+				'fieldName' : 'Fecha del pago',
+				'fieldType' : 'date'
 			}, {
 				'fieldId' : 'comprobante',
 				'fieldName' : 'Comprobante',
