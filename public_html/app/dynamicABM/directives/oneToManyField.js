@@ -17,7 +17,6 @@ define(['app',
 					$scope.relationshipDescriptor = viewDescriptorService.getDescriptor($scope.field.fieldId);
 					
 					$scope.newElement = {};
-					console.info($scope.element);
 					$scope.newElement[$scope.element.route] = $scope.element._links.self.href;
 					$scope.newElementRelationships = {};
 					$scope.newElementRelationships[$scope.element.route] = [$scope.element];
@@ -25,12 +24,23 @@ define(['app',
 				
 				$scope.save = function(){
 					Restangular.all($scope.field.fieldId.concat('/')).post($scope.newElement).then(function(postedElement){
+						$scope.elementRelationships[$scope.field.fieldId].push($scope.newElement);
 						bootbox.alert("Guardado");
 					});
 				};
 				
 				$scope.remove = function(element){
+
+					
 					element.remove().then(function(){
+						array = $scope.elementRelationships[$scope.field.fieldId];
+
+						for(var i = array.length - 1; i >= 0; i--) {
+						    if(array[i].id === element.id) {
+						        array.splice(i, 1);
+						    }
+						}
+						
 						bootbox.alert("Eliminado");
 					}, function(error){
 						switch(error.status){
