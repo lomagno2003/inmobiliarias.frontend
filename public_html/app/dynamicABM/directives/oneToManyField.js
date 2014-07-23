@@ -13,13 +13,15 @@ define(['app',
 			},
 			templateUrl : 'app/dynamicABM/directives/templates/oneToManyField.html',
 			link: function($scope, element, attrs) {
-				$scope.relationshipDescriptor = viewDescriptorService.getDescriptor($scope.field.fieldId);
-				
-				$scope.newElement = {};
-				console.info($scope.element);
-				$scope.newElement[$scope.element.route] = $scope.element._links.self.href;
-				$scope.newElementRelationships = {};
-				$scope.newElementRelationships[$scope.element.route] = [$scope.element];
+				$scope.onButtonClick = function(){
+					$scope.relationshipDescriptor = viewDescriptorService.getDescriptor($scope.field.fieldId);
+					
+					$scope.newElement = {};
+					console.info($scope.element);
+					$scope.newElement[$scope.element.route] = $scope.element._links.self.href;
+					$scope.newElementRelationships = {};
+					$scope.newElementRelationships[$scope.element.route] = [$scope.element];
+				};
 				
 				$scope.save = function(){
 					Restangular.all($scope.field.fieldId.concat('/')).post($scope.newElement).then(function(postedElement){

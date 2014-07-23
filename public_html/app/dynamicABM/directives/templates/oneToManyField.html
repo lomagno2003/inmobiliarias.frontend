@@ -18,7 +18,7 @@
 
 <div ng-if="field.fieldDisabled != 'true'">
 	<button type="button" class="btn btn-default"
-		href="#{{field.fieldId}}-modal-container" role="button" data-toggle="modal">Crear</button>
+		href="#{{field.fieldId}}-modal-container" role="button" data-toggle="modal" ng-click="onButtonClick()">Crear</button>
 
 	<div class="modal fade" id="{{field.fieldId}}-modal-container" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
