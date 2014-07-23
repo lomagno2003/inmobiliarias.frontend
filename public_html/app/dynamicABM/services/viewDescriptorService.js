@@ -3,6 +3,7 @@ define(['app','require',
         'dynamicABM/services/viewDescriptors/consorcioDescriptor',
         'dynamicABM/services/viewDescriptors/gastoOrdinarioDescriptor',
         'dynamicABM/services/viewDescriptors/gastoExtraordinarioDescriptor',
+        'dynamicABM/services/viewDescriptors/pagoDescriptor',
         'dynamicABM/services/viewDescriptors/unidadFuncionalDescriptor',
         'dynamicABM/services/viewDescriptors/propietarioDescriptor',
         'dynamicABM/services/viewDescriptors/conceptoDescriptor'

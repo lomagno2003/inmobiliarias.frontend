@@ -6,9 +6,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr
-			ng-repeat="row in validRows()"
-			ng-click="selectAction(field,row)">
+		<tr ng-repeat="row in validRows()" ng-click="selectAction(field,row)">
 			<td ng-repeat="column in field.relationshipDescriptor">{{formatColumn(column,row)}}</td>
 		</tr>
 	</tbody>
@@ -20,6 +18,26 @@
 
 <div ng-if="field.fieldDisabled != 'true'">
 	<button type="button" class="btn btn-default"
-		ng-click="create(field.fieldId)">Crear</button>
+		href="#{{field.fieldId}}-modal-container" role="button" data-toggle="modal">Crear</button>
+
+	<div class="modal fade" id="{{field.fieldId}}-modal-container" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+				</div>
+				<div class="modal-body">
+					<resource-form-mapper descriptor="relationshipDescriptor" element="newElement" element-relationships="newElementRelationships" recursive='false'></resource-form-mapper>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="save()">Guardar</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 

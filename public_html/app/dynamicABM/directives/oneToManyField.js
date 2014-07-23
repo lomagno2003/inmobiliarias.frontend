@@ -1,6 +1,9 @@
-define(['app'],function(app){
+define(['app',
+        'dynamicABM/directives/resourceFormMapper',
+        'dynamicABM/services/viewDescriptorService'],
+        function(app){
 	
-	app.register.directive('oneToManyField',function($location){
+	app.register.directive('oneToManyField',function($location,viewDescriptorService,Restangular){
 		return {
 			restrict: 'E',
 			scope : {
@@ -10,10 +13,24 @@ define(['app'],function(app){
 			},
 			templateUrl : 'app/dynamicABM/directives/templates/oneToManyField.html',
 			link: function($scope, element, attrs) {
-			     $scope.validRows = function(){
-			    	 var result = [];
-			    	 if($scope.element&&$scope.elementRelationships){
-				    	columns = $scope.field.relationshipDescriptor;
+				$scope.relationshipDescriptor = viewDescriptorService.getDescriptor($scope.field.fieldId);
+				
+				$scope.newElement = {};
+				console.info($scope.element);
+				$scope.newElement[$scope.element.route] = $scope.element._links.self.href;
+				$scope.newElementRelationships = {};
+				$scope.newElementRelationships[$scope.element.route] = [$scope.element];
+				
+				$scope.save = function(){
+					Restangular.all($scope.field.fieldId.concat('/')).post($scope.newElement).then(function(postedElement){
+						bootbox.alert("Guardado");
+					});
+				};
+				
+			    $scope.validRows = function(){
+			    	var result = [];
+			    	if($scope.element&&$scope.elementRelationships){
+			    		columns = $scope.field.relationshipDescriptor;
 				    	var rows = null;
 				    	
 				    	if(!$scope.field.fieldInRequest){
@@ -21,9 +38,7 @@ define(['app'],function(app){
 				    	} else {
 				    		rows = $scope.element[$scope.field.fieldId];
 				    	}
-				    	
-				 		
-				 		
+
 						if(rows){	
 							_.forEach(rows, function(row){
 								include = true;

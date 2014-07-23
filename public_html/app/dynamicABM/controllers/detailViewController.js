@@ -7,9 +7,16 @@ define(['app',
 		'viewDescriptorService','Restangular', 'jasperConnectorService',
 		function($scope, $rootScope, $routeParams, $location, viewDescriptorService, Restangular, jasperConnectorService) {
 			/**
-			 * Functions definitions
+			 * Variable definitions
 			 */
 		
+			$scope.element = {};
+			
+			$scope.elementRelationships = {};
+			
+			/**
+			 * Functions definitions
+			 */
 			$scope.loadData = function(){
 				Restangular.one($routeParams.repository, $routeParams.id).get().then(function(element){
 					$scope.element = element;
@@ -21,6 +28,7 @@ define(['app',
 								$scope.elementRelationships[property]=null;
 								Restangular.allUrl(property,$scope.element._links[property].href).getList().then(function(element){
 									$scope.elementRelationships[element.route]=element;
+									$scope.elementRelationships[element.route].descriptor = viewDescriptorService.getDescriptor(element.route);
 								});
 							}
 						}
@@ -39,7 +47,6 @@ define(['app',
 			};
 			
 			$scope.save = function(){
-				console.debug($scope.element);
 				$scope.element.put().then(function(){
 					bootbox.alert("Guardado");
 				});
@@ -69,8 +76,6 @@ define(['app',
 								
 				_.forEach(elementDescriptor.detailView.fields, function(field){
 					if(field.fieldDefaultValue){
-						console.log(field.fieldId);
-						console.log(field.fieldDefaultValue);
 						newElement[field.fieldId] = field.fieldDefaultValue;
 					}
 				});
@@ -84,7 +89,6 @@ define(['app',
 				var result = {};
 				
 				_.forEach($scope.descriptor.detailView.fields, function(field){
-					console.log("Field ID: ".concat(field.fieldId));
 					switch(field.fieldType){
 					case "oneToMany":
 						result[field.fieldId] = [];
@@ -108,10 +112,7 @@ define(['app',
 						break;
 					};
 				});
-				
-				console.log("Result:");
-				console.log(result);
-				
+
 				jasperConnectorService.generateReport("detail".concat($routeParams.repository.substring(0,1).toUpperCase()).concat($routeParams.repository.substring(1)),result);
 			};
 			
