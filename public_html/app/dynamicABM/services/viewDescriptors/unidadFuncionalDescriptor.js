@@ -17,7 +17,7 @@ define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], functio
 				'fieldName' : 'Nombre',
 				'fieldType' : 'text',
 				'fieldDefaultValue':'Nueva Unidad Funcional'
-			}, {
+			},{
 				'fieldId' : 'direccion',
 				'fieldName' : 'Direccion',
 				'fieldType' : 'text'

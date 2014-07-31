@@ -5,8 +5,8 @@ define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], functio
 		'listView' : {
 				title : "Detalles del Concepto",
 				columns : [ {
-					'fieldId' : 'valorDefecto',
-					'fieldName' : 'Valor por defecto',
+					'fieldId' : 'nombre',
+					'fieldName' : 'Nombre',
 					'fieldType' : 'text'
 				}, {
 					'fieldId' : 'descripcion',
@@ -16,6 +16,10 @@ define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], functio
 		}, 'detailView' : {
 			title : "Detalles del Concepto",
 			fields : [ {
+				'fieldId' : 'nombre',
+				'fieldName' : 'Nombre',
+				'fieldType' : 'text'
+			}, {
 				'fieldId' : 'valorDefecto',
 				'fieldName' : 'Valor por defecto',
 				'fieldType' : 'text'

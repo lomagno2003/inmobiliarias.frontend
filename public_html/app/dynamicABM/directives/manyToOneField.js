@@ -1,6 +1,6 @@
 define(['app'],function(app){
 	
-	app.register.directive('manyToOneField',function($location,$routeParams){
+	app.register.directive('manyToOneField',function($location,$routeParams,Restangular){
 		return {
 			restrict: 'E',
 			scope : {
@@ -10,10 +10,22 @@ define(['app'],function(app){
 			},
 			templateUrl : 'app/dynamicABM/directives/templates/manyToOneField.html',
 			link: function($scope, element, attrs) {
-				$scope.changeReference = function(fieldId){
-					console.log($scope.elementRelationships);
-					path = $routeParams.repository.concat('/').concat($routeParams.id).concat('/').concat(fieldId);
-					$scope.goTo(path);
+				Restangular.all($scope.field.fieldId).getList().then(function(elements){
+					$scope.elements = elements;
+
+					_.forEach($scope.elements, function(row){
+						$scope.options.push({
+							text:row.nombre,
+							value:row._links.self.href
+						});
+					});
+				});
+				
+				$scope.options = [];
+				
+				$scope.changeReference = function(option){
+					$scope.element[$scope.field.fieldId] = option.value;
+					$scope.elementRelationships[$scope.field.fieldId][0][$scope.field.relationshipDescriptor.fieldId] = option.text;
 				};
 				
 				$scope.goTo = function(path){

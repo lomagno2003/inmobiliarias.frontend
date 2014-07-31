@@ -9,10 +9,7 @@
 					Dropdown</span>
 			</button>
 			<ul class="dropdown-menu" role="menu">
-				<li ng-if="field.fieldDisabled != 'true'"><a
-					ng-click="changeReference(field.fieldId)">Cambiar</a></li>
-				<li ng-if="elementRelationships[field.fieldId][0]"><a
-					ng-click="goTo(field.fieldId.concat('/').concat(elementRelationships[field.fieldId][0]['id']))">Ir</a></li>
+				<li ng-repeat="option in options"><a ng-click="changeReference(option)">{{option.text}}</a></li>
 			</ul>
 		</div>
 	</div>
