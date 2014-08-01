@@ -30,8 +30,6 @@ define(['app',
 				};
 				
 				$scope.remove = function(element){
-
-					
 					element.remove().then(function(){
 						array = $scope.elementRelationships[$scope.field.fieldId];
 

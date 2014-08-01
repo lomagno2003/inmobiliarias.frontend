@@ -16,7 +16,8 @@ define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], functio
 			fields : [ {
 				'fieldId' : 'nombre',
 				'fieldName' : 'Nombre',
-				'fieldType' : 'text'
+				'fieldType' : 'text',
+				'fieldDefaultValue':'Nuevo Propietario',
 			}, {
 				'fieldId' : 'dni',
 				'fieldName' : 'DNI',

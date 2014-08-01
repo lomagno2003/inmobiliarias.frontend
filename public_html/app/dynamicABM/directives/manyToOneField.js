@@ -25,6 +25,9 @@ define(['app'],function(app){
 				
 				$scope.changeReference = function(option){
 					$scope.element[$scope.field.fieldId] = option.value;
+					if(!$scope.elementRelationships[$scope.field.fieldId]){
+						$scope.elementRelationships[$scope.field.fieldId]=[{}];
+					}
 					$scope.elementRelationships[$scope.field.fieldId][0][$scope.field.relationshipDescriptor.fieldId] = option.text;
 				};
 				

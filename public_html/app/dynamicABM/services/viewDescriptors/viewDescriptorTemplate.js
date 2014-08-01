@@ -23,6 +23,7 @@ define(['dynamicABM/services/viewDescriptors/viewDescriptorRepository'], functio
 				'fieldType' : 'manyToOne',
 				'fieldInRequest':'true',									//This says that the array of values is stored in the element, and not through de URI
 				'fieldDisabled':'true',										//This disallow the Cambiar button
+				'fieldDefaultValue':'defaultValue',
 				'relationshipDescriptor' :  
 				    {
 						'fieldId' : 'fieldId',
